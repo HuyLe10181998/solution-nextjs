@@ -12,7 +12,7 @@ export default async function NewsDetailPage({params}: {params: {id: string}}) {
         <div 
             className="breadcrumb-wrapper section-padding bg-cover" 
             style={{
-                backgroundImage: "url('http://sky-solution.up.railway.app/uploads/1734686032558.png')"
+                backgroundImage: "url('https://api-solution-production.up.railway.app/uploads/1734686032558.png')"
             }}
         >
             <div className="container mx-auto">

@@ -1,6 +1,8 @@
+import { getInfo } from '@/actions/info.action';
 import React from 'react';
 
-const Footer: React.FC = () => {
+const Footer: React.FC = async () => {
+    const infoData = await getInfo('user')
     return (
         <footer className="footer-section footer-bg">
             <div className="container mx-auto">
@@ -10,7 +12,7 @@ const Footer: React.FC = () => {
                             <div className="single-footer-widget">
                                 <div className="widget-head">
                                     <a href="index.html">
-                                        <img width={240} src="http://sky-solution.up.railway.app/uploads/1734428457073.png" alt="logo-img" />
+                                        <img width={240} src="https://api-solution-production.up.railway.app/uploads/1734428457073.png" alt="logo-img" />
                                     </a>
                                 </div>
                                 <div className="footer-content">
@@ -18,7 +20,7 @@ const Footer: React.FC = () => {
                                         We believe it has the power to do <br />
                                         amazing things.
                                     </p>
-                                    <a href="mailto:info@example.com" className="link">info@example.com</a>
+                                    <a href={`mailto:${infoData?.email}`} className="link">{infoData?.email}</a>
                                     {/* <div className="social-icon d-flex align-items-center">
                                         <a href="#"><i className="fab fa-facebook-f"></i></a>
                                         <a href="#"><i className="fab fa-twitter"></i></a>
@@ -85,13 +87,12 @@ const Footer: React.FC = () => {
                                 </div>
                                 <div className="footer-address-text">
                                     <p>
-                                        570 8th Ave, New York,NY 10018
-                                        United States
+                                       {infoData?.address}
                                     </p>
                                     <h5>Hours:</h5>
                                     <p>
-                                        9.30am – 6.30pm <br />
-                                        Monday to Friday
+                                        {infoData?.timeEnd} - {infoData?.timeStart} <br />
+                                        {infoData?.workingDays}
                                     </p>
                                 </div>
                             </div>

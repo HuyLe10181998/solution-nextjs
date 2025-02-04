@@ -127,7 +127,6 @@ const Tools: FC<Props> = ({ editor, onImageSelection }) => {
       const formData = new FormData();
       formData.append('image', file);
       const result = await uploadImage(formData);
-      console.log('result',result);
       if (result.filePath) {
         editor?.chain().focus().setImage({ src: result.filePath, alt: "this is an image" }).run();
         

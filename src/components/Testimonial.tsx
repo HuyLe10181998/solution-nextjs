@@ -24,7 +24,6 @@ const responsive = {
       items: 1
     }
   };
-  console.log('data',data)
 
 
 

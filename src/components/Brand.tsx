@@ -36,7 +36,7 @@ const Brand: React.FC = () => {
             ssr={true}
             infinite={true}
             autoPlay={true}
-            autoPlaySpeed={3000}
+            autoPlaySpeed={2000}
             keyBoardControl={true}
             customTransition="transform 1000ms ease-in-out"
             transitionDuration={1000}
@@ -49,7 +49,7 @@ const Brand: React.FC = () => {
               <div key={index} className="brand-image p-4 hover:scale-110 transition-transform duration-300">
                 <img 
                   width={200} 
-                  src={`http://sky-solution.up.railway.app/uploads/logo/pic-${index + 1}.png`} 
+                  src={`https://api-solution-production.up.railway.app/uploads/logo/pic-${index + 1}.png`} 
                   alt={`brand-img-${index + 1}`}
                   className="m-auto object-contain hover:opacity-80 transition-opacity duration-300"
                 />

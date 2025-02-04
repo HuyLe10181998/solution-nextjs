@@ -3,8 +3,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: 'sky-solution.up.railway.app',
+        protocol: 'https',
+        hostname: 'api-solution-production.up.railway.app',
         port: '',
         pathname: '/uploads/**',
       },

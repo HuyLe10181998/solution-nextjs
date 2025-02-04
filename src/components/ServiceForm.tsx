@@ -85,7 +85,6 @@ function ServiceForm({serviceData}:{serviceData:ServiceData}){
                    Service {index+1}
                  </h2>
                  <FormItemUpload id={service.id} label="Image:" name="image"  value={service.image} onChange={(e)=>{
-                     console.log('slide',service)
                      onChange(e,service.id,"image")
                  }} />
                  <FormItem label="Title" name="title" type="text" placeholder="Type title" value={service.title} onChange={(e)=>{

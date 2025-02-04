@@ -1,10 +1,19 @@
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FacebookIcon,InstagramIcon,MailIcon,MapPinIcon } from "@/assets/icons";
+import { getInfo } from "@/actions/info.action";
 
 
-const  HeaderTopStart: React.FC =  () => {
-
+const  HeaderTopStart: React.FC =   () => {
+  const [data,setData] = useState<any>(null)
+  useEffect(()=>{
+    const fetchData = async () => {
+      const infoData = await getInfo('user')
+      setData(infoData)
+    }
+    fetchData()
+  },[])
+  if(!data) return null;
   return (
     <div className="header-top-section hidden md:block !px-8 bg-white">
       <div className="container mx-auto">
@@ -12,17 +21,17 @@ const  HeaderTopStart: React.FC =  () => {
           <ul className="contact-list">
             <li className="flex items-center">
                <MailIcon />
-              <a href="mailto:info@example.com" className="link">info@example.com</a>
+              <a href="mailto:info@example.com" className="link">{data?.email}</a>
             </li>
             <li className="flex items-center">
               <MapPinIcon />
-              <span className="text-primary-gray">55 Main Street, 2nd block, Malborne ,Australia</span>
+              <span className="text-primary-gray">{data?.address}</span>
             </li>
           </ul>
           <div className="top-right">
             <div className="social-icon flex items-center">
-              <a href="#" className="text-primary-gray"><FacebookIcon /></a>
-              <a href="#" className="text-primary-gray"><InstagramIcon /></a>
+              <a href={data?.facebookLink || '/'} className="text-primary-gray"><FacebookIcon /></a>
+              <a href={data?.instagramLink || '/'} className="text-primary-gray"><InstagramIcon /></a>
 
              
             </div>

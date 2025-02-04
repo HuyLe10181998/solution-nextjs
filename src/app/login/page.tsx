@@ -21,7 +21,6 @@ export default function Login() {
 
         try {
             const response = await login(username, password);
-            console.log('response', response);
             if (response.error) {
                 setError(response.error);
             } else {

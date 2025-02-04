@@ -15,7 +15,7 @@ export const DesktopNav = (data: HeaderData) => {
                   const isActive = item.link === pathname || item.children?.some((child) => child.link === pathname)
                   return    <li key={index}>
                     <Link prefetch  href={item.link} className={`border-none !flex gap-2 items-center ${isActive ? "!text-primary-default" : ""}`}>{item.label}
-                    {item?.children?.length && (
+                    {item?.children?.length && !item?.hideChildren && (
    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
   <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
 </svg>

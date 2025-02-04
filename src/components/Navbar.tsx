@@ -16,7 +16,6 @@ function Navbar() {
   const [isLoading, setIsLoading] = useState(true);
   const pathname = usePathname()
   const isAdmin = pathname.includes('/admin')
-  const router = useRouter();
   
 
   useEffect(() => {
@@ -46,7 +45,7 @@ function Navbar() {
                   <div className="header-left">
                       <div className="logo">
                           <Link href="/" className="header-logo">
-                              <Image src="http://sky-solution.up.railway.app/uploads/1734428457073.png" alt="logo" width={120} height={50} />
+                              <Image src="https://api-solution-production.up.railway.app/uploads/1734428457073.png" alt="logo" width={120} height={50} />
                           </Link>
                       </div>
                       <DesktopNav {...data} />

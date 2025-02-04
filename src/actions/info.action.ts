@@ -7,12 +7,23 @@ import { fetchWithCredentials } from "@/lib/serverUtils";
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 export async function getInfo(role?: string) {
+  let response;
   try {
-    const response = await fetchWithCredentials(`${API_URL}/api/data/info?role=${role || 'admin'}`,{
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
+    
+    if(role === 'user'){
+      response = await fetch(`${API_URL}/api/data/info?role=${role}`,{
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    }else{
+      response = await fetchWithCredentials(`${API_URL}/api/data/info`,{
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      });
+    }
+  
     if([403,401].includes(response.status)){
         return {error: 'Unauthorized'}
     }

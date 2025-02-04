@@ -1,6 +1,8 @@
+import { getInfo } from "@/actions/info.action";
 
 
-function ChatAction() {
+async function ChatAction() {
+    const infoData = await getInfo('user')
     return (
         <section className="cta-chat-section lg:p-20 xl:p-28 p-10">
         <div className="container mx-auto">
@@ -14,7 +16,7 @@ function ChatAction() {
                         <p className="max-w-[500px]">Chúng tôi sẵn sàng hỗ trợ bạn trong việc lựa chọn loại visa phù hợp và hướng dẫn bạn từng bước để đạt được mục tiêu.</p>
                     </div>
                 </div>
-                <a href="https://zalo.me/0935403364" className="theme-btn min-w-[150px] hover:!text-white !text-primary-text !bg-white wow fadeInUp" data-wow-delay=".5s">
+                <a href={`https://zalo.me/${infoData?.phoneNumber}`} className="theme-btn min-w-[150px] hover:!text-white !text-primary-text !bg-white wow fadeInUp" data-wow-delay=".5s">
                    <span>
                         Lets Get Started
                         <i className="fas fa-chevron-right"></i>

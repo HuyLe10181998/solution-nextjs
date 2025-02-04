@@ -1,7 +1,9 @@
+import { getInfo } from '@/actions/info.action'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const infoData = await getInfo('user')
   return (
     <div className="mx-auto pb-12">
       {/* Hero Image */}
@@ -28,14 +30,14 @@ export default function ContactPage() {
         <div className="space-y-8">
           <div>
             <h4 className="font-medium uppercase mb-2">OPENING HOURS</h4>
-            <p>Tuesday to Saturday</p>
-            <p>11am to 6pm.</p>
+            <p>{infoData?.workingDays}</p>
+            <p>{infoData?.timeStart} - {infoData?.timeEnd}</p>
           </div>
 
           <div>
             <h4 className="font-medium uppercase mb-2">EMAIL:</h4>
-            <Link href="mailto:info@zashadu.com" className="text-gray-700 hover:text-black">
-              info@zashadu.com
+            <Link href={`mailto:${infoData?.email}`} className="text-gray-700 hover:text-black">
+              {infoData?.email}
             </Link>
           </div>
         </div>
@@ -44,14 +46,13 @@ export default function ContactPage() {
         <div className="space-y-8">
           <div>
             <h4 className="font-medium uppercase mb-2">ADDRESS</h4>
-            <p>No. 22 Adeleke Adedoyin Street, off</p>
-            <p>Kofo Abayomi, Victoria Island, Lagos.</p>
+            <p>{infoData?.address}</p>
           </div>
 
           <div>
             <h4 className="font-medium uppercase mb-2">PHONE:</h4>
-            <Link href="tel:+2348183762678" className="text-gray-700 hover:text-black">
-              (+234) 818 376 2678
+            <Link href={`tel:${infoData?.phone}`} className="text-gray-700 hover:text-black">
+              {infoData?.phone}
             </Link>
           </div>
         </div>
@@ -64,7 +65,7 @@ export default function ContactPage() {
         Có những lúc bạn cần sự giúp đỡ, đừng ngần ngại liên hệ với chúng tôi. Chúng tôi luôn sẵn sàng để giải đáp mọi thắc mắc của bạn.
         </p>
         <button className="bg-black text-white px-6 py-3 hover:bg-gray-800 transition-colors">
-            <Link className='text-white' href="https://zalo.me/0935403364">
+            <Link className='text-white' href={`https://zalo.me/${infoData?.phoneNumber}`}>
           MESSAGE FOR US
 
             </Link>
@@ -74,7 +75,7 @@ export default function ContactPage() {
       {/* Google Map */}
       <div className="mt-12 h-[400px] w-full">
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3964.7304446791465!2d3.4216!3d6.4297!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf4f976b5a895%3A0x3f62c9dbd5ca45e6!2s22%20Adeleke%20Adedoyin%20St%2C%20Victoria%20Island%2C%20Lagos!5e0!3m2!1sen!2sng!4v1624461234567!5m2!1sen!2sng"
+          src={infoData?.mapUrl || ''}
           width="100%"
           height="100%"
           style={{ border: 0 }}

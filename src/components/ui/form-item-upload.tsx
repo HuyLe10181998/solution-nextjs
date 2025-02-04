@@ -21,7 +21,6 @@ function FormItemUpload({ value, onChange, name,label,id = 1 }: FormItemUploadPr
             const formData = new FormData();
             formData.append('image', file);
             const result = await uploadImage(formData);
-            console.log('result',result);
             if (result.filePath) {
                 setImageUrl(result.filePath);
                 onChange(result.filePath);

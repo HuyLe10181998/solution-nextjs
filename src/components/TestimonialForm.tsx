@@ -60,7 +60,6 @@ function TestimonialForm({testimonialData}:{testimonialData:TestimonialData}){
             toast.success("Testimonial section updated successfully")
         }
     }
-    console.log('users',users)
 
     return <div className={`${!preview && "text-center"}`}>
         <div className="flex gap-8 justify-center items-center mb-8">

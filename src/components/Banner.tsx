@@ -5,7 +5,7 @@ function Banner() {
     return (
         <>
             {/* Cta Banner Section Start */}
-            <div className="cta-banner-section bg-cover section-padding" style={{backgroundImage: "url('https://api-solution-production.up.railway.app/img/background-move.jpg')"}}>
+            <div className="cta-banner-section bg-cover section-padding" style={{backgroundImage: "url('assets/img/background-move.jpg')"}}>
                 <div className="container mx-auto">
                     <div className="cta-banner-wrapper section-padding  pt-0">
                         <div className="video-box">
@@ -21,7 +21,7 @@ function Banner() {
             </div>
     
             {/* Feature Icon Box Section Start */}
-            <section className="feature-icon-box-area bg-primary-text">
+            <section className="feature-icon-box-area">
                 <div className="container mx-auto">
                     <div className="feature-icon-box-wrapper">
                         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">

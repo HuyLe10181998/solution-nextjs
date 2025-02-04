@@ -4,7 +4,6 @@ import NewsForm from "@/components/NewsForm";
 async function EditNewsPage({params}:{params:{id:string}}){
     if(!params.id) return <div>News not found</div>
     const response = await getNewById(Number(params.id))
-    console.log(response)
 
     if(!response?.data) return <div>News not found</div>
 

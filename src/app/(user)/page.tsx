@@ -14,7 +14,6 @@ import Loading from "@/components/Loading/Loading";
 
 export default async function Home() {
   const homeData = await getHome()
-  console.log('homeData',homeData)
   if(!homeData){
     return <Loading />;
   }

@@ -5,8 +5,7 @@ import { fetchWithCredentials } from "@/lib/serverUtils";
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 export async function getNews(page = 1, limit = 10, search = "", categoryIds: number[] = []):Promise<any> {
-  console.log('page', page);
-  console.log('limit', limit);
+
 
   try {
     const queryParams = new URLSearchParams({

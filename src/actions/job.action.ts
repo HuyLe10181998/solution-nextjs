@@ -76,7 +76,6 @@ export async function updateJob(id: number, jobData: any) {
 }
 
 export async function deleteJob(id: number) {
-  console.log('idssss',id)
   try {
     const response = await fetchWithCredentials(`${API_URL}/api/data/jobs/${id}`, {
       method: "DELETE",

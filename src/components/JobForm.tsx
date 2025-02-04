@@ -63,7 +63,6 @@ function JobForm({job}:{job?:Job }){
     
       
 
-
     return   <form onSubmit={handleJob}
     className="relative mt-6 max-w-[900px] inline-block text-primary-text w-full rounded-xl !bg-white p-8 shadow lg:mt-0 md:text-center text-left"
   >
@@ -78,7 +77,8 @@ function JobForm({job}:{job?:Job }){
 
     <FormItem label="Salary VND (4 tuần)" name="salaryVND" type="text" placeholder="Ex: 40728000" value={String(job?.salaryVND || '')} onChange={() => {}} />
 
-    <FormItem label="Estimated LC filing date" name="estimatedFilingDate" type="text" placeholder="Enter filing date" value={job?.estimatedFilingDate || '' } onChange={() => {}} />
+    <FormItem label="Estimated LC filing date" name="estimatedFilingDate" type="date" placeholder="Enter filing date" value={new Date(job?.estimatedFilingDate || '')} onChange={() => {}} />
+
 
 
     <FormItem label="Place" name="place" type="text" placeholder="Ex: Hanoi, Vietnam" value={job?.place || ''} onChange={() => {}} />  

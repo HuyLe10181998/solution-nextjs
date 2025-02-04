@@ -1,8 +1,6 @@
 import React from "react";
 
 function Service({data}:any) {
-
-   console.log('data',data);
     return   <section className="service-section fix section-padding pt-0">
     <div className="container mx-auto">
         <div className="section-title text-center">
