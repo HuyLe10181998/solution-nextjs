@@ -87,7 +87,7 @@ function NewsForm({news}:{news?: News }){
 
     <FormItem label="Author" name="author" type="text" placeholder="Type author here" value={news?.author || ''} onChange={() => {}} />
 
-    <FormItem label="Date" name="date" type="date" placeholder="Type date here" value={news?.date || ''} onChange={() => {}} />
+    <FormItem label="Date" name="date" type="date" placeholder="Type date here" value={news?.date ? new Date(news?.date) : new Date()} onChange={() => {}} />
 
    
 

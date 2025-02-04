@@ -77,7 +77,7 @@ function JobForm({job}:{job?:Job }){
 
     <FormItem label="Salary VND (4 tuần)" name="salaryVND" type="text" placeholder="Ex: 40728000" value={String(job?.salaryVND || '')} onChange={() => {}} />
 
-    <FormItem label="Estimated LC filing date" name="estimatedFilingDate" type="date" placeholder="Enter filing date" value={new Date(job?.estimatedFilingDate || '')} onChange={() => {}} />
+    <FormItem label="Estimated LC filing date" name="estimatedFilingDate" type="date" placeholder="Enter filing date" value={job?.estimatedFilingDate ? new Date(job?.estimatedFilingDate) : new Date()} onChange={() => {}} />
 
 
 

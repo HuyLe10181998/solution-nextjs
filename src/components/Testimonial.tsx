@@ -57,7 +57,7 @@ const responsive = {
         className="swiper-wrapper"
       >
          {data?.users?.map((item:any)=> {
-                    return    <div className="testimonial-card-items">
+                    return    <div key={item.id} className="testimonial-card-items">
                     <div className="author-items">
                         <div className="author-image bg-cover" style={{backgroundImage: `url(${item.avatar})`}}></div>
                         <div className="author-content">
