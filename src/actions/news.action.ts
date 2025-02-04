@@ -1,5 +1,7 @@
 "use server";
 
+import { fetchWithCredentials } from "@/lib/serverUtils";
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 export async function getNews(page = 1, limit = 10, search = "", categoryIds: number[] = []):Promise<any> {
@@ -14,7 +16,13 @@ export async function getNews(page = 1, limit = 10, search = "", categoryIds: nu
       categoryIds: categoryIds.join(","),
     });
 
-    const response = await fetch(`${API_URL}/api/data/blogs?${queryParams}`);
+    const response = await fetchWithCredentials(`${API_URL}/api/data/blogs?${queryParams}`,{
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+
+    });
     return await response.json();
   } catch (error) {
     console.error("Failed to fetch blogs:", error);
@@ -24,7 +32,13 @@ export async function getNews(page = 1, limit = 10, search = "", categoryIds: nu
 
 export async function getNewById(id: number) {
   try {
-    const response = await fetch(`${API_URL}/api/data/blogs/${id}`);
+    const response = await fetchWithCredentials(`${API_URL}/api/data/blogs/${id}`,{
+      cache: 'no-store',
+      headers: {
+        'Content-Type': 'application/json',
+      }
+
+    });
     return await response.json();
   } catch (error) {
     console.error("Failed to fetch blog:", error);
@@ -32,23 +46,14 @@ export async function getNewById(id: number) {
   }
 }
 
-export async function createNew(blogData: {
-  title: string;
-  description: string;
-  author: string;
-  categoryIds: number[];
-  content: string;
-  thumb: string;
-}) {
+export async function createNew(blogData: any) {
   try {
-    const response = await fetch(`${API_URL}/api/data/blogs`, {
+    const response = await fetchWithCredentials(`${API_URL}/api/data/blogs`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-      body: JSON.stringify(blogData),
-    });
+    },JSON.stringify(blogData));
     return await response.json();
   } catch (error) {
     console.error("Failed to create blog:", error);
@@ -58,25 +63,15 @@ export async function createNew(blogData: {
 
 export async function updateNew(
   id: number,
-  blogData: {
-    title: string;
-    description: string;
-    author: string;
-    categoryIds: number[];
-    content: string;
-    thumb: string;
-    date: string;
-  }
+  blogData: any
 ) {
   try {
-    const response = await fetch(`${API_URL}/api/data/blogs/${id}`, {
+    const response = await fetchWithCredentials(`${API_URL}/api/data/blogs/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-      body: JSON.stringify(blogData),
-    });
+    },JSON.stringify(blogData));
     return await response.json();
   } catch (error) {
     console.error("Failed to update blog:", error);
@@ -86,10 +81,10 @@ export async function updateNew(
 
 export async function deleteNew(id: number) {
   try {
-    const response = await fetch(`${API_URL}/api/data/blogs/${id}`, {
+    const response = await fetchWithCredentials(`${API_URL}/api/data/blogs/${id}`, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        'Content-Type': 'application/json',
       },
     });
     return await response.json();

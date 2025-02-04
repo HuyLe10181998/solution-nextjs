@@ -10,10 +10,11 @@ async function PostList({
     // Get page and limit from searchParams, with defaults
     const page = Number(searchParams?.page);
     const limit = Number(searchParams?.limit);
+    const search = searchParams?.search;
 
   
     
-    const data= await getNews(page, limit);
+    const data= await getNews(page, limit,search as string);
 
     const {blogs,totalPages} = data;
 

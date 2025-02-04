@@ -1,6 +1,10 @@
+
 import React from "react";
 import { FacebookIcon,InstagramIcon,MailIcon,MapPinIcon } from "@/assets/icons";
-const HeaderTopStart: React.FC = () => {
+
+
+const  HeaderTopStart: React.FC =  () => {
+
   return (
     <div className="header-top-section hidden md:block !px-8 bg-white">
       <div className="container mx-auto">

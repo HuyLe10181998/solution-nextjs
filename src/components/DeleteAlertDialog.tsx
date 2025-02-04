@@ -30,28 +30,25 @@ export function DeleteAlertDialog({
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="text-muted-foreground hover:text-red-500 -mr-2"
-        >
-          {isDeleting ? (
+       
+        <button className="theme-btn !text-white !bg-red-500 !px-8 !py-2 !rounded-lg mt-4 line-height">
+        {isDeleting ? (
             <Loader2Icon className="size-4 animate-spin" />
           ) : (
-            <Trash2Icon className="size-4" />
+            <span className="!text-white">Delete</span>
           )}
-        </Button>
+                    </button>
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>{title}</AlertDialogTitle>
+          <AlertDialogTitle className="text-white">{title}</AlertDialogTitle>
           <AlertDialogDescription>{description}</AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
           <AlertDialogAction
             onClick={onDelete}
-            className="bg-red-500 hover:bg-red-600"
+            className="bg-red-500 hover:bg-red-600 text-white"
             disabled={isDeleting}
           >
             {isDeleting ? "Deleting..." : "Delete"}

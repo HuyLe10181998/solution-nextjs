@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 export default function ContactPage() {
   return (
-    <div className="mx-auto py-12">
+    <div className="mx-auto pb-12">
       {/* Hero Image */}
       <div className="w-full h-[500px] relative mb-12">
         <Image

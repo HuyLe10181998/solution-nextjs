@@ -1,29 +1,8 @@
 import React from "react";
 import { CheckIcon } from "../assets/icons";
 import CircularProgress from "./ui/circle-progress";
-function About() {
-    const data = {
-    "imgLarge": "http://sky-solution.up.railway.app/uploads/1734433273778.jpg",
-    "img": "http://sky-solution.up.railway.app/uploads/1734432645561.jpg",
-    "avatarCeo": "https://placehold.co/68x68",
-    "title": "Về Chúng Tôi",
-    "description": "Chúng tôi hiểu rằng mỗi hành trình du học và định cư là một quyết định quan trọng và đầy thử thách. Chính vì thế, Sky Solution luôn nỗ lực mang đến giải pháp phù hợp, giúp khách hàng dễ dàng tiếp cận cơ hội học tập và sống tại nước ngoài.",
-    "circleBars": [
-      {
-        "title": "Business Strategy",
-        "percent": 68
-      },
-      {
-        "title": "Real Technology Solutions",
-        "percent": 93
-      }
-    ],
-    "aboutList": [
-      "Immigration & Visa Consulting",
-      "Direct Online Interview",
-      "99% Visa Approvals"
-    ]
-  }
+function About({data}: any) {
+
     return (
         <section className="about-section fix lg:p-12 md:p-24 p-8">
             <div className="container">

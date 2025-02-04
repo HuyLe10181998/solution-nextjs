@@ -1,5 +1,6 @@
 import { FacebookIcon, InstagramIcon, SearchIcon } from "@/assets/icons";
 import PostList from "@/components/PostList";
+import SearchNews from "@/components/SearchNews";
 
 
 function News({
@@ -9,9 +10,10 @@ function News({
 }) {
     const page = Number(searchParams?.page) || 1;
     const limit = Number(searchParams?.limit) || 10;
+    const search = searchParams?.search || "";
  
 
-    return  <div className="pt-10">
+    return  <div className="">
         <div 
             className="breadcrumb-wrapper !px-20 section-padding bg-cover" 
             style={{ backgroundImage: "url('/assets/img/news-bg.jpg')" }}
@@ -31,7 +33,7 @@ function News({
   
         <div className="flex gap-8 px-20 lg:py-20 py-10 news-area">
           <div className="w-full lg:w-[60%]">
-            <PostList searchParams={{ page, limit }} />
+            <PostList searchParams={{ page, limit,search }} />
           </div>
           <div className="flex-1 lg:block hidden">
             <div className="main-sidebar flex flex-col gap-8">
@@ -40,15 +42,8 @@ function News({
                   <h3>Search</h3>
                 </div>
                 <div className="search_widget">
-                  <form action="#">
-                    <input 
-                      type="text" 
-                      placeholder="Keywords here..." 
-                    />
-                    <button type="submit" className="flex items-center justify-center">
-                      <SearchIcon />
-                    </button>
-                  </form>
+                  <SearchNews />
+             
                 </div>
               </div>
 

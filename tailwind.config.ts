@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 import { withUt } from "uploadthing/tw";
-
+import flowbite from 'flowbite-react/tailwind';
 const config: Config = withUt({
   darkMode: ["class"],
   content: [
@@ -8,6 +8,7 @@ const config: Config = withUt({
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/assets/**/*.{js,ts,jsx,tsx,mdx}",
+    flowbite.content()
 
   ],
   theme: {
@@ -66,6 +67,6 @@ const config: Config = withUt({
       },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), flowbite.plugin()],
 });
 export default config;

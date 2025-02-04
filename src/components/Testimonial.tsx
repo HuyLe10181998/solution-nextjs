@@ -3,7 +3,7 @@ import React from "react";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-function Testimonial() {
+function Testimonial({data}:any) {
 
 const responsive = {
     superLargeDesktop: {
@@ -24,36 +24,8 @@ const responsive = {
       items: 1
     }
   };
- const data = {
-    "title": "Những Lời Chứng Thực",
-    "heading": "Khách Hàng Nói Gì Về Dịch Vụ Của Chúng Tôi",
-    "users": [
-      {
-        "id": 1,
-        "name": "Nguyễn Minh Tâm",
-        "job": "Lập Trình Viên Web",
-        "text": "Dịch vụ của công ty giúp tôi tiết kiệm thời gian và công sức rất nhiều. Họ không chỉ hỗ trợ kỹ thuật mà còn tư vấn về cách tối ưu hóa hiệu suất công việc. Một sự lựa chọn tuyệt vời cho mọi người trong ngành công nghệ!",
-        "date": "Ngày 23 tháng 1, 2024",
-        "avatar": "https://placehold.co/75x75"
-      },
-      {
-        "id": 2,
-        "name": "Trần Thị Lan",
-        "job": "Chuyên Gia Marketing",
-        "text": "Tôi rất ấn tượng với sự chuyên nghiệp và tận tâm của đội ngũ. Họ đã giúp tôi xây dựng chiến lược marketing hiệu quả, mang lại kết quả rõ rệt trong thời gian ngắn. Tôi chắc chắn sẽ tiếp tục hợp tác với họ trong tương lai.",
-        "date": "Ngày 23 tháng 1, 2024",
-        "avatar": "https://placehold.co/75x75"
-      },
-      {
-        "id": 3,
-        "name": "Lê Quang Hòa",
-        "job": "Giám Đốc Kinh Doanh",
-        "text": "Là một người bận rộn, tôi cần dịch vụ nhanh chóng và hiệu quả. Công ty này đã đáp ứng được tất cả yêu cầu của tôi, từ việc tư vấn đến triển khai công việc. Họ luôn đảm bảo tiến độ và chất lượng, tôi rất hài lòng với kết quả đạt được.",
-        "date": "Ngày 23 tháng 1, 2024",
-        "avatar": "https://placehold.co/75x75"
-      }
-    ]
-  }
+  console.log('data',data)
+
 
 
     return (
@@ -85,7 +57,7 @@ const responsive = {
         itemClass="carousel-item-padding-40-px"
         className="swiper-wrapper"
       >
-         {data.users.map((item)=> {
+         {data?.users?.map((item:any)=> {
                     return    <div className="testimonial-card-items">
                     <div className="author-items">
                         <div className="author-image bg-cover" style={{backgroundImage: `url(${item.avatar})`}}></div>

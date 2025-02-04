@@ -3,8 +3,7 @@ import React from "react";
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 
-function Hero() {
-
+function Hero({data}: any) {
 const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -24,35 +23,7 @@ const responsive = {
       items: 1
     }
   };
-    const data = [
-        {
-          "background": "http://sky-solution.up.railway.app/uploads/1734428845753.jpg",
-          "tag": "Tư Vấn Du Học",
-          "title": "Tư Vấn & <br>  Chìa Khóa Mở Cửa <br>  Tương Lai... ",
-          "description": "Với đội ngũ chuyên gia tư vấn giàu kinh nghiệm, chúng tôi sẽ đồng hành cùng bạn trong từng bước chuẩn <br> bị hồ sơ du học và định cư. Từ việc chọn trường học, ngành học phù hợp đến chuẩn bị tài chính và <br> các giấy tờ quan trọng, chúng tôi giúp bạn thực hiện ước mơ du học một cách dễ dàng.",
-          "btnLink": "/",
-          "btnText": "Learn More",
-          active: true
-
-        },
-        {
-          "background": "http://sky-solution.up.railway.app/uploads/1734429132362.jpg",
-          "tag": "Định Cư Nước Ngoài",
-          "title": "Định Cư Tại Các & <br>  Quốc Gia Phát Triển <br>",
-          "description": "Bạn muốn định cư tại những quốc gia như Mỹ, Canada, Úc? Chúng tôi giúp bạn tìm hiểu <br> các chính sách định cư, tư vấn các loại visa và hỗ trợ các thủ tục pháp lý, giúp bạn và <br> gia đình có một cuộc sống mới đầy triển vọng ở nước ngoài.",
-          "btnLink": "/",
-          "btnText": "Learn More",
-
-        },
-        {
-          "background": "http://sky-solution.up.railway.app/uploads/1734429246053.jpg",
-          "tag": "Du Học Toàn Cầu",
-          "title": "Khám Phá Cơ Hội Du Học Hàng Đầu",
-          "description": "Chúng tôi mang đến cho bạn những lựa chọn du học tốt nhất tại các quốc gia phát triển.<br> Từ các chương trình học bổng, tư vấn trường học cho đến hỗ trợ visa, mọi bước đi của bạn đều được chúng tôi hỗ trợ để đảm bảo bạn có trải nghiệm học tập quốc tế tuyệt vời nhất.",
-          "btnLink": "/home",
-          "btnText": "find more",
-        }
-      ]
+ 
     return (
         <div className="">
                 <Carousel
@@ -64,19 +35,19 @@ const responsive = {
         infinite={true}
         // autoPlay={this.props.deviceType !== "mobile" ? true : false}
         autoPlay={true}
-        autoPlaySpeed={4000}
+        autoPlaySpeed={3000}
         keyBoardControl={true}
         customTransition="all .5"
         transitionDuration={500}
-        containerClass="hero-section hero-1"
+        containerClass="hero-section hero-1 slideInLeft transition-all duration-1000"
         removeArrowOnDeviceType={["tablet", "mobile"]}
         // deviceType={this.props.deviceType}
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-40-px  min-h-[700px]"
         className="swiper-wrapper"
       >
-         {data.map((item)=> {
-                    return   <div  className="swiper-slide" data-carousel-item={item.active ? `active` : Boolean(true)}>
+         {data?.map((item:any,index:any)=> {
+                    return   <div key={index} className="swiper-slide" data-carousel-item={item.active ? `active` : Boolean(true)}>
                     <div className="shape-image" data-animation="fadeInLeft" data-delay="2.1s">
                                     <img src="assets/img/hero/object1.png" alt="shape-img" />
                                 </div>

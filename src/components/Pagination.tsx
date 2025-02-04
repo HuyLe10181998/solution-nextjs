@@ -65,7 +65,7 @@ export default function Pagination({ currentPage, totalPages,limit }: Pagination
     };
 
     return (
-        <div className="flex items-center justify-center gap-1 rounded-lg bg-white p-1">
+        <div className="flex items-center justify-center gap-1 rounded-lg bg-transparent p-1">
             <button
                 onClick={() => onPageChange(currentPage - 1)}
                 disabled={currentPage === 1}

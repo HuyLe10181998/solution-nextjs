@@ -1,5 +1,9 @@
 "use server";
 
+import { fetchWithCredentials } from "@/lib/serverUtils";
+import { Job } from "@/models/job.model";
+
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 export async function getJobs(page = 1, limit = 10, search = "") {
@@ -10,7 +14,13 @@ export async function getJobs(page = 1, limit = 10, search = "") {
       search,
     });
 
-    const response = await fetch(`${API_URL}/api/data/jobs?${queryParams}`);
+    const response = await fetchWithCredentials(`${API_URL}/api/data/jobs?${queryParams}`,{
+      headers: {
+        "Content-Type": "application/json",
+      },
+      cache: 'no-store'
+
+    });
     return await response.json();
   } catch (error) {
     console.error("Failed to fetch jobs:", error);
@@ -20,7 +30,13 @@ export async function getJobs(page = 1, limit = 10, search = "") {
 
 export async function getJobById(id: number) {
   try {
-    const response = await fetch(`${API_URL}/api/data/jobs/${id}`);
+    const response = await fetchWithCredentials(`${API_URL}/api/data/jobs/${id}`,{
+      headers: {
+        "Content-Type": "application/json",
+
+      },
+      cache: 'no-store'
+    });
     return await response.json();
   } catch (error) {
     console.error("Failed to fetch job:", error);
@@ -28,27 +44,14 @@ export async function getJobById(id: number) {
   }
 }
 
-export async function createJob(jobData: {
-  place: string;
-  benefit: string;
-  jobDescription: string;
-  salary: string;
-  company: string;
-  salaryVND: string;
-  estimatedFilingDate: string;
-  note?: string;
-  signature?: string;
-  spot: string;
-}) {
+export async function createJob(jobData: any) {
   try {
-    const response = await fetch(`${API_URL}/api/data/job`, {
+    const response = await fetchWithCredentials(`${API_URL}/api/data/job`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
       },
-      body: JSON.stringify(jobData),
-    });
+    },JSON.stringify(jobData));
     return await response.json();
   } catch (error) {
     console.error("Failed to create job:", error);
@@ -58,14 +61,13 @@ export async function createJob(jobData: {
 
 export async function updateJob(id: number, jobData: any) {
   try {
-    const response = await fetch(`${API_URL}/api/data/jobs/${id}`, {
+    const response = await fetchWithCredentials(`${API_URL}/api/data/jobs/${id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+     
       },
-      body: JSON.stringify(jobData),
-    });
+    },JSON.stringify(jobData));
     return await response.json();
   } catch (error) {
     console.error("Failed to update job:", error);
@@ -74,11 +76,12 @@ export async function updateJob(id: number, jobData: any) {
 }
 
 export async function deleteJob(id: number) {
+  console.log('idssss',id)
   try {
-    const response = await fetch(`${API_URL}/api/data/jobs/${id}`, {
+    const response = await fetchWithCredentials(`${API_URL}/api/data/jobs/${id}`, {
       method: "DELETE",
       headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
+        "Content-Type": "application/json",
       },
     });
     return await response.json();

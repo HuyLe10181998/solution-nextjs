@@ -68,7 +68,7 @@ function USA() {
         ]
       };
     return (
-        <div className="w-full pt-10">
+        <div className="w-full">
           {/* Hero Banner Section */}
           <div className="relative h-[300px] w-full overflow-hidden">
             <img 
@@ -80,7 +80,7 @@ function USA() {
     
           {/* City Section */}
           <div className="relative mt-8">
-            <div className="container mx-auto pt-10">
+            <div className="container mx-auto px-8 pt-10">
               <div className="relative">
                 <div className="w-full">
                   <img 

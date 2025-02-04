@@ -8,18 +8,25 @@ import Counter from "@/components/Counter";
 import Testimonial from "@/components/Testimonial";
 import ChatAction from "@/components/ChatAction";
 import Process from "@/components/Process";
+import { getHome } from "@/actions/home.action";
+import Loading from "@/components/Loading/Loading";
 
 
 export default async function Home() {
+  const homeData = await getHome()
+  console.log('homeData',homeData)
+  if(!homeData){
+    return <Loading />;
+  }
   return (
     <>
-     <Hero />
-     <About />
-     <Service />
+     <Hero data={homeData?.heroData?.slides} />
+     <About data={homeData?.aboutData} />
+     <Service data={homeData?.serviceData} />
      <Brand />
      <Banner />
      <Counter />
-     <Testimonial />  
+     <Testimonial data={homeData?.testimonialData} />  
      <ChatAction />
      <Process />
     </>
