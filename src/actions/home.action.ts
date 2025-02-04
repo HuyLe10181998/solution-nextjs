@@ -9,7 +9,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
 export async function getHome() {
     try {
-        const response = await fetchWithCredentials(`${API_URL}/api/data/home`, {
+        const response = await fetch(`${API_URL}/api/data/home`, {
             headers: {
                 "Content-Type": "application/json",
             },
