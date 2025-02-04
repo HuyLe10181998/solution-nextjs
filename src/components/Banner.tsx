@@ -5,7 +5,7 @@ function Banner() {
     return (
         <>
             {/* Cta Banner Section Start */}
-            <div className="cta-banner-section bg-cover section-padding" style={{backgroundImage: "url('https://sky-solution.up.railway.app/img/background-move.jpg')"}}>
+            <div className="cta-banner-section bg-cover section-padding" style={{backgroundImage: "url('https://api-solution-production.up.railway.app/img/background-move.jpg')"}}>
                 <div className="container mx-auto">
                     <div className="cta-banner-wrapper section-padding  pt-0">
                         <div className="video-box">
