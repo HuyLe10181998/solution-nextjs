@@ -1,10 +1,10 @@
-import { FC, ReactNode } from "react";
-import clsx from "clsx";
+import { FC, ReactNode } from 'react'
+import clsx from 'clsx'
 
 interface Props {
-  children: ReactNode;
-  active?: boolean;
-  onClick?(): void;
+  children: ReactNode
+  active?: boolean
+  onClick?(): void
 }
 
 const ToolButton: FC<Props> = ({ children, active, onClick }) => {
@@ -12,11 +12,11 @@ const ToolButton: FC<Props> = ({ children, active, onClick }) => {
     <button
       onClick={onClick}
       type="button"
-      className={clsx("p-2", active ? "bg-black text-white" : "text-black")}
+      className={clsx('p-2', active ? 'bg-black text-white' : 'text-black')}
     >
       {children}
     </button>
-  );
-};
+  )
+}
 
-export default ToolButton;
+export default ToolButton

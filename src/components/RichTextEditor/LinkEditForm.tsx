@@ -1,19 +1,19 @@
-"use client";
+'use client'
 
-import { FC, useEffect, useState } from "react";
-import { BiUnlink } from "react-icons/bi";
+import { FC, useEffect, useState } from 'react'
+import { BiUnlink } from 'react-icons/bi'
 
 interface Props {
-  initialState?: string;
-  onSubmit(link: string): void;
+  initialState?: string
+  onSubmit(link: string): void
 }
 
 const LinkEditForm: FC<Props> = ({ initialState, onSubmit }) => {
-  const [link, setLink] = useState("");
+  const [link, setLink] = useState('')
 
   useEffect(() => {
-    if (initialState) setLink(initialState);
-  }, [initialState]);
+    if (initialState) setLink(initialState)
+  }, [initialState])
 
   return (
     <div>
@@ -27,7 +27,7 @@ const LinkEditForm: FC<Props> = ({ initialState, onSubmit }) => {
         />
         <button
           onMouseDown={() => {
-            onSubmit(link);
+            onSubmit(link)
           }}
           className="bg-black text-white w-8 aspect-square flex justify-center items-center"
         >
@@ -35,7 +35,7 @@ const LinkEditForm: FC<Props> = ({ initialState, onSubmit }) => {
         </button>
         <button
           onMouseDown={() => {
-            onSubmit("");
+            onSubmit('')
           }}
           className="bg-red-400 text-white w-8 aspect-square flex justify-center items-center"
         >
@@ -43,7 +43,7 @@ const LinkEditForm: FC<Props> = ({ initialState, onSubmit }) => {
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default LinkEditForm;
+export default LinkEditForm

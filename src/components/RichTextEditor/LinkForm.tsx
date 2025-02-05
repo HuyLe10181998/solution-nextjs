@@ -1,16 +1,16 @@
-"use client";
+'use client'
 
-import { FC, useState } from "react";
-import ToolButton from "./ToolButton";
-import { BiLink } from "react-icons/bi";
+import { FC, useState } from 'react'
+import ToolButton from './ToolButton'
+import { BiLink } from 'react-icons/bi'
 
 interface Props {
-  onSubmit(link: string): void;
+  onSubmit(link: string): void
 }
 
 const LinkForm: FC<Props> = ({ onSubmit }) => {
-  const [showForm, setShowForm] = useState(false);
-  const [link, setLink] = useState("");
+  const [showForm, setShowForm] = useState(false)
+  const [link, setLink] = useState('')
 
   return (
     <div>
@@ -29,11 +29,11 @@ const LinkForm: FC<Props> = ({ onSubmit }) => {
           />
           <button
             onClick={() => {
-              setLink("");
-              setShowForm(false);
+              setLink('')
+              setShowForm(false)
             }}
             onMouseDown={() => {
-              onSubmit(link);
+              onSubmit(link)
             }}
             className="bg-white ml-1"
           >
@@ -42,7 +42,7 @@ const LinkForm: FC<Props> = ({ onSubmit }) => {
         </div>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default LinkForm;
+export default LinkForm

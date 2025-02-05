@@ -1,75 +1,82 @@
-"use client";
+'use client'
 
-import { createComment, deletePost, getPosts, toggleLike } from "@/actions/post.action";
-import { SignInButton, useUser } from "@clerk/nextjs";
-import { useState } from "react";
-import toast from "react-hot-toast";
-import { Card, CardContent } from "./ui/card";
-import Link from "next/link";
-import { Avatar, AvatarImage } from "./ui/avatar";
-import { formatDistanceToNow } from "date-fns";
-import { DeleteAlertDialog } from "./DeleteAlertDialog";
-import { Button } from "./ui/button";
-import { HeartIcon, LogInIcon, MessageCircleIcon, SendIcon } from "lucide-react";
-import { Textarea } from "./ui/textarea";
+import {
+  createComment,
+  deletePost,
+  getPosts,
+  toggleLike,
+} from '@/actions/post.action'
+import { SignInButton, useUser } from '@clerk/nextjs'
+import { useState } from 'react'
+import toast from 'react-hot-toast'
+import { Card, CardContent } from './ui/card'
+import Link from 'next/link'
+import { Avatar, AvatarImage } from './ui/avatar'
+import { formatDistanceToNow } from 'date-fns'
+import { DeleteAlertDialog } from './DeleteAlertDialog'
+import { Button } from './ui/button'
+import { HeartIcon, LogInIcon, MessageCircleIcon, SendIcon } from 'lucide-react'
+import { Textarea } from './ui/textarea'
 
-type Posts = Awaited<ReturnType<typeof getPosts>>;
-type Post = Posts[number];
+type Posts = Awaited<ReturnType<typeof getPosts>>
+type Post = Posts[number]
 
 function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
-  const { user } = useUser();
-  const [newComment, setNewComment] = useState("");
-  const [isCommenting, setIsCommenting] = useState(false);
-  const [isLiking, setIsLiking] = useState(false);
-  const [isDeleting, setIsDeleting] = useState(false);
-  const [hasLiked, setHasLiked] = useState(post.likes.some((like) => like.userId === dbUserId));
-  const [optimisticLikes, setOptmisticLikes] = useState(post._count.likes);
-  const [showComments, setShowComments] = useState(false);
+  const { user } = useUser()
+  const [newComment, setNewComment] = useState('')
+  const [isCommenting, setIsCommenting] = useState(false)
+  const [isLiking, setIsLiking] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [hasLiked, setHasLiked] = useState(
+    post.likes.some((like) => like.userId === dbUserId),
+  )
+  const [optimisticLikes, setOptmisticLikes] = useState(post._count.likes)
+  const [showComments, setShowComments] = useState(false)
 
   const handleLike = async () => {
-    if (isLiking) return;
+    if (isLiking) return
     try {
-      setIsLiking(true);
-      setHasLiked((prev) => !prev);
-      setOptmisticLikes((prev) => prev + (hasLiked ? -1 : 1));
-      await toggleLike(post.id);
+      setIsLiking(true)
+      setHasLiked((prev) => !prev)
+      setOptmisticLikes((prev) => prev + (hasLiked ? -1 : 1))
+      await toggleLike(post.id)
     } catch (error) {
-      setOptmisticLikes(post._count.likes);
-      setHasLiked(post.likes.some((like) => like.userId === dbUserId));
+      setOptmisticLikes(post._count.likes)
+      setHasLiked(post.likes.some((like) => like.userId === dbUserId))
     } finally {
-      setIsLiking(false);
+      setIsLiking(false)
     }
-  };
+  }
 
   const handleAddComment = async () => {
-    if (!newComment.trim() || isCommenting) return;
+    if (!newComment.trim() || isCommenting) return
     try {
-      setIsCommenting(true);
-      const result = await createComment(post.id, newComment);
+      setIsCommenting(true)
+      const result = await createComment(post.id, newComment)
       if (result?.success) {
-        toast.success("Comment posted successfully");
-        setNewComment("");
+        toast.success('Comment posted successfully')
+        setNewComment('')
       }
     } catch (error) {
-      toast.error("Failed to add comment");
+      toast.error('Failed to add comment')
     } finally {
-      setIsCommenting(false);
+      setIsCommenting(false)
     }
-  };
+  }
 
   const handleDeletePost = async () => {
-    if (isDeleting) return;
+    if (isDeleting) return
     try {
-      setIsDeleting(true);
-      const result = await deletePost(post.id);
-      if (result.success) toast.success("Post deleted successfully");
-      else throw new Error(result.error);
+      setIsDeleting(true)
+      const result = await deletePost(post.id)
+      if (result.success) toast.success('Post deleted successfully')
+      else throw new Error(result.error)
     } catch (error) {
-      toast.error("Failed to delete post");
+      toast.error('Failed to delete post')
     } finally {
-      setIsDeleting(false);
+      setIsDeleting(false)
     }
-  };
+  }
 
   return (
     <Card className="overflow-hidden">
@@ -78,7 +85,7 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
           <div className="flex space-x-3 sm:space-x-4">
             <Link href={`/profile/${post.author.username}`}>
               <Avatar className="size-8 sm:w-10 sm:h-10">
-                <AvatarImage src={post.author.image ?? "/avatar.png"} />
+                <AvatarImage src={post.author.image ?? '/avatar.png'} />
               </Avatar>
             </Link>
 
@@ -93,24 +100,37 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
                     {post.author.name}
                   </Link>
                   <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                    <Link href={`/profile/${post.author.username}`}>@{post.author.username}</Link>
+                    <Link href={`/profile/${post.author.username}`}>
+                      @{post.author.username}
+                    </Link>
                     <span>•</span>
-                    <span>{formatDistanceToNow(new Date(post.createdAt))} ago</span>
+                    <span>
+                      {formatDistanceToNow(new Date(post.createdAt))} ago
+                    </span>
                   </div>
                 </div>
                 {/* Check if current user is the post author */}
                 {dbUserId === post.author.id && (
-                  <DeleteAlertDialog isDeleting={isDeleting} onDelete={handleDeletePost} />
+                  <DeleteAlertDialog
+                    isDeleting={isDeleting}
+                    onDelete={handleDeletePost}
+                  />
                 )}
               </div>
-              <p className="mt-2 text-sm text-foreground break-words">{post.content}</p>
+              <p className="mt-2 text-sm text-foreground break-words">
+                {post.content}
+              </p>
             </div>
           </div>
 
           {/* POST IMAGE */}
           {post.image && (
             <div className="rounded-lg overflow-hidden">
-              <img src={post.image} alt="Post content" className="w-full h-auto object-cover" />
+              <img
+                src={post.image}
+                alt="Post content"
+                className="w-full h-auto object-cover"
+              />
             </div>
           )}
 
@@ -121,7 +141,9 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
                 variant="ghost"
                 size="sm"
                 className={`text-muted-foreground gap-2 ${
-                  hasLiked ? "text-red-500 hover:text-red-600" : "hover:text-red-500"
+                  hasLiked
+                    ? 'text-red-500 hover:text-red-600'
+                    : 'hover:text-red-500'
                 }`}
                 onClick={handleLike}
               >
@@ -134,7 +156,11 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
               </Button>
             ) : (
               <SignInButton mode="modal">
-                <Button variant="ghost" size="sm" className="text-muted-foreground gap-2">
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="text-muted-foreground gap-2"
+                >
                   <HeartIcon className="size-5" />
                   <span>{optimisticLikes}</span>
                 </Button>
@@ -148,7 +174,7 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
               onClick={() => setShowComments((prev) => !prev)}
             >
               <MessageCircleIcon
-                className={`size-5 ${showComments ? "fill-blue-500 text-blue-500" : ""}`}
+                className={`size-5 ${showComments ? 'fill-blue-500 text-blue-500' : ''}`}
               />
               <span>{post.comments.length}</span>
             </Button>
@@ -162,11 +188,15 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
                 {post.comments.map((comment) => (
                   <div key={comment.id} className="flex space-x-3">
                     <Avatar className="size-8 flex-shrink-0">
-                      <AvatarImage src={comment.author.image ?? "/avatar.png"} />
+                      <AvatarImage
+                        src={comment.author.image ?? '/avatar.png'}
+                      />
                     </Avatar>
                     <div className="flex-1 min-w-0">
                       <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
-                        <span className="font-medium text-sm">{comment.author.name}</span>
+                        <span className="font-medium text-sm">
+                          {comment.author.name}
+                        </span>
                         <span className="text-sm text-muted-foreground">
                           @{comment.author.username}
                         </span>
@@ -184,7 +214,7 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
               {user ? (
                 <div className="flex space-x-3">
                   <Avatar className="size-8 flex-shrink-0">
-                    <AvatarImage src={user?.imageUrl || "/avatar.png"} />
+                    <AvatarImage src={user?.imageUrl || '/avatar.png'} />
                   </Avatar>
                   <div className="flex-1">
                     <Textarea
@@ -201,7 +231,7 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
                         disabled={!newComment.trim() || isCommenting}
                       >
                         {isCommenting ? (
-                          "Posting..."
+                          'Posting...'
                         ) : (
                           <>
                             <SendIcon className="size-4" />
@@ -227,6 +257,6 @@ function PostCard({ post, dbUserId }: { post: Post; dbUserId: string | null }) {
         </div>
       </CardContent>
     </Card>
-  );
+  )
 }
-export default PostCard;
+export default PostCard

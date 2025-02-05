@@ -1,4 +1,4 @@
-"use client";
+'use client'
 
 import {
   createContext,
@@ -7,43 +7,43 @@ import {
   useContext,
   useEffect,
   useState,
-} from "react";
+} from 'react'
 // import { readAllImages } from "../actions/file";
 
 interface Props {
-  children: ReactNode;
+  children: ReactNode
 }
 
 interface InitialImageContext {
-  images: string[];
-  updateImages(images: string[]): void;
-  removeOldImage(src: string): void;
+  images: string[]
+  updateImages(images: string[]): void
+  removeOldImage(src: string): void
 }
 
-const Context = createContext<InitialImageContext | null>(null);
+const Context = createContext<InitialImageContext | null>(null)
 
 const ImageProvider: FC<Props> = ({ children }) => {
-  const [images, setImages] = useState<string[]>([]);
+  const [images, setImages] = useState<string[]>([])
 
   const updateImages = (data: string[]) => {
-    setImages([...data, ...images]);
-  };
+    setImages([...data, ...images])
+  }
 
   const removeOldImage = (src: string) => {
-    setImages((old) => old.filter((img) => src !== img));
-  };
+    setImages((old) => old.filter((img) => src !== img))
+  }
 
   useEffect(() => {
     // readAllImages().then(setImages);
-  }, []);
+  }, [])
 
   return (
     <Context.Provider value={{ images, updateImages, removeOldImage }}>
       {children}
     </Context.Provider>
-  );
-};
+  )
+}
 
-export const useImages = () => useContext(Context);
+export const useImages = () => useContext(Context)
 
-export default ImageProvider;
+export default ImageProvider

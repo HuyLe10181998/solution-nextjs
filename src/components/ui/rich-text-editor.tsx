@@ -1,17 +1,17 @@
-"use client";
-import { FC, useState } from "react";
-import { EditorContent, useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
-import Underline from "@tiptap/extension-underline";
-import TextAlign from "@tiptap/extension-text-align";
-import Placeholder from "@tiptap/extension-placeholder";
-import Image from "@tiptap/extension-image";
-import Tools from "../RichTextEditor/Tools";
-import Link from "@tiptap/extension-link";
+'use client'
+import { FC, useState } from 'react'
+import { EditorContent, useEditor } from '@tiptap/react'
+import StarterKit from '@tiptap/starter-kit'
+import Underline from '@tiptap/extension-underline'
+import TextAlign from '@tiptap/extension-text-align'
+import Placeholder from '@tiptap/extension-placeholder'
+import Image from '@tiptap/extension-image'
+import Tools from '../RichTextEditor/Tools'
+import Link from '@tiptap/extension-link'
 
 interface Props {
-  onChange?: (html: string) => void;
-  initialContent?: string;
+  onChange?: (html: string) => void
+  initialContent?: string
 }
 
 const extensions = [
@@ -22,22 +22,22 @@ const extensions = [
     autolink: false,
     linkOnPaste: true,
     HTMLAttributes: {
-      target: "",
+      target: '',
     },
   }),
   Image.configure({
     inline: false,
     HTMLAttributes: {
-      class: "w-[80%] mx-auto",
+      class: 'w-[80%] mx-auto',
     },
   }),
   TextAlign.configure({
-    types: ["paragraph"],
+    types: ['paragraph'],
   }),
   Placeholder.configure({
-    placeholder: "Write something...",
+    placeholder: 'Write something...',
   }),
-];
+]
 
 const RichEditor: FC<Props> = ({ onChange, initialContent = '' }) => {
   const editor = useEditor({
@@ -46,15 +46,15 @@ const RichEditor: FC<Props> = ({ onChange, initialContent = '' }) => {
     editorProps: {
       attributes: {
         class:
-          "prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl outline-none",
+          'prose prose-sm sm:prose-base lg:prose-lg xl:prose-2xl outline-none',
       },
     },
     content: initialContent || 'Type content here...',
     onUpdate: ({ editor }) => {
       // Call onChange whenever content changes
-      onChange?.(editor.getHTML());
+      onChange?.(editor.getHTML())
     },
-  });
+  })
 
   //   editor?.commands.setContent("")
 
@@ -62,17 +62,15 @@ const RichEditor: FC<Props> = ({ onChange, initialContent = '' }) => {
     editor
       ?.chain()
       .focus()
-      .setImage({ src: image, alt: "this is an image" })
-      .run();
-  };
+      .setImage({ src: image, alt: 'this is an image' })
+      .run()
+  }
 
   return (
     <>
       <div className="flex flex-col space-y-6 border border-gray-200 rounded-lg pb-4">
         <div className="bg-gray-100 p-4 z-50 rounded-lg">
-          <Tools
-            editor={editor}
-          />
+          <Tools editor={editor} />
         </div>
         <div className="flex-1 px-4">
           <EditorContent
@@ -83,9 +81,8 @@ const RichEditor: FC<Props> = ({ onChange, initialContent = '' }) => {
           />
         </div>
       </div>
-     
     </>
-  );
-};
+  )
+}
 
-export default RichEditor;
+export default RichEditor

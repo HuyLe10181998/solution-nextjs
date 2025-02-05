@@ -1,41 +1,41 @@
-"use client";
-import { FC, useState } from "react";
-import { IoMdClose } from "react-icons/io";
-import { FileUploader } from "react-drag-drop-files";
-import { IoCloudUploadOutline } from "react-icons/io5";
-import GalleryImage from "./GalleryImage";
-import { useImages } from "@/context/ImageProvider";
-import { uploadImage } from "@/actions/upload.action";
+'use client'
+import { FC, useState } from 'react'
+import { IoMdClose } from 'react-icons/io'
+import { FileUploader } from 'react-drag-drop-files'
+import { IoCloudUploadOutline } from 'react-icons/io5'
+import GalleryImage from './GalleryImage'
+import { useImages } from '@/context/ImageProvider'
+import { uploadImage } from '@/actions/upload.action'
 
 interface Props {
-  visible: boolean;
-  onClose(state: boolean): void;
-  onSelect?(src: string): void;
+  visible: boolean
+  onClose(state: boolean): void
+  onSelect?(src: string): void
 }
 
 const ImageGallery: FC<Props> = ({ visible, onSelect, onClose }) => {
-  const [isUploading, setIsUploading] = useState(false);
-  const image = useImages();
-  const images = image?.images;
-  const updateImages = image?.updateImages;
-  const removeOldImage = image?.removeOldImage;
+  const [isUploading, setIsUploading] = useState(false)
+  const image = useImages()
+  const images = image?.images
+  const updateImages = image?.updateImages
+  const removeOldImage = image?.removeOldImage
 
   const handleClose = () => {
-    onClose(!visible);
-  };
+    onClose(!visible)
+  }
 
   const handleSelection = (image: string) => {
-    onSelect && onSelect(image);
-    handleClose();
-  };
+    onSelect && onSelect(image)
+    handleClose()
+  }
 
-  if (!visible) return null;
+  if (!visible) return null
 
   return (
     <div
       tabIndex={-1}
       onKeyDown={({ key }) => {
-        if (key === "Escape") handleClose();
+        if (key === 'Escape') handleClose()
       }}
       className="fixed inset-0 bg-black bg-opacity-40 backdrop-blur-sm z-50 flex items-center justify-center"
     >
@@ -47,22 +47,22 @@ const ImageGallery: FC<Props> = ({ visible, onSelect, onClose }) => {
         </div>
         <FileUploader
           handleChange={async (file: File) => {
-            setIsUploading(true);
+            setIsUploading(true)
             try {
-              const formData = new FormData();
-              formData.append("image", file);
-              const res = await uploadImage(formData);
+              const formData = new FormData()
+              formData.append('image', file)
+              const res = await uploadImage(formData)
               if (res && updateImages) {
-                updateImages([res.filePath]);
+                updateImages([res.filePath])
               }
             } catch (error) {
-              console.log(error);
+              console.log(error)
             }
 
-            setIsUploading(false);
+            setIsUploading(false)
           }}
           name="file"
-          types={["png", "jpg", "jpeg", "webp"]}
+          types={['png', 'jpg', 'jpeg', 'webp']}
         >
           <div className="flex items-center justify-center w-full">
             <label className="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50">
@@ -96,26 +96,22 @@ const ImageGallery: FC<Props> = ({ visible, onSelect, onClose }) => {
                 key={item}
                 onSelectClick={() => handleSelection(item)}
                 onDeleteClick={async () => {
-                  if (confirm("Are you sure?")) {
-                    const id = item
-                      .split("/")
-                      .slice(-2)
-                      .join("/")
-                      .split(".")[0];
+                  if (confirm('Are you sure?')) {
+                    const id = item.split('/').slice(-2).join('/').split('.')[0]
                     // await removeImage(id);
                     if (removeOldImage) {
-                      removeOldImage(item);
+                      removeOldImage(item)
                     }
                   }
                 }}
                 src={item}
               />
-            );
+            )
           })}
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default ImageGallery;
+export default ImageGallery

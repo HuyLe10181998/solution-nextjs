@@ -1,41 +1,29 @@
-import { getNews } from "@/actions/news.action";
-import PostListItem from "./PostListItem";
-import Pagination from "./Pagination";
+import { getNews } from '@/actions/news.action'
+import PostListItem from './PostListItem'
+import Pagination from './Pagination'
 
 async function PostList({
-    searchParams,
+  searchParams,
 }: {
-    searchParams: { [key: string]: string | string[] | undefined | number };
+  searchParams: { [key: string]: string | string[] | undefined | number }
 }) {
-    // Get page and limit from searchParams, with defaults
-    const page = Number(searchParams?.page);
-    const limit = Number(searchParams?.limit);
-    const search = searchParams?.search;
+  // Get page and limit from searchParams, with defaults
+  const page = Number(searchParams?.page)
+  const limit = Number(searchParams?.limit)
+  const search = searchParams?.search
 
-  
-    
-    const data= await getNews(page, limit,search as string);
+  const data = await getNews(page, limit, search as string)
 
-    const {blogs,totalPages} = data;
+  const { blogs, totalPages } = data
 
-    
+  if (!blogs?.length) return null
+  return (
+    <div className="flex flex-col gap-12">
+      {blogs?.map((post: any) => <PostListItem key={post.id} post={post} />)}
 
-    if(!blogs?.length) return null;
-    return (
-        <div className="flex flex-col gap-12">
-            {blogs?.map((post: any) => (
-                <PostListItem key={post.id} post={post} />
-            ))}
-
-      <Pagination
-    currentPage={page} 
-    totalPages={totalPages} 
-    limit={limit}
- 
-/>
-
-        </div>
-    )
+      <Pagination currentPage={page} totalPages={totalPages} limit={limit} />
+    </div>
+  )
 }
 
-export default PostList; 
+export default PostList

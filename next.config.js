@@ -8,10 +8,9 @@ const nextConfig = {
         port: '',
         pathname: '/uploads/**',
       },
-     
     ],
     domains: ['images.pexels.com'],
   },
-};
+}
 
-module.exports = nextConfig; 
+module.exports = nextConfig

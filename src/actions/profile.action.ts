@@ -1,9 +1,9 @@
-"use server";
+'use server'
 
-import { auth } from "@clerk/nextjs/server";
-import prisma from "@/lib/prisma";
-import { revalidatePath } from "next/cache";
-import { getDbUserId } from "./user.action";
+import { auth } from '@clerk/nextjs/server'
+import prisma from '@/lib/prisma'
+import { revalidatePath } from 'next/cache'
+import { getDbUserId } from './user.action'
 
 export async function getProfileByUsername(username: string) {
   try {
@@ -26,12 +26,12 @@ export async function getProfileByUsername(username: string) {
           },
         },
       },
-    });
+    })
 
-    return user;
+    return user
   } catch (error) {
-    console.error("Error fetching profile:", error);
-    throw new Error("Failed to fetch profile");
+    console.error('Error fetching profile:', error)
+    throw new Error('Failed to fetch profile')
   }
 }
 
@@ -62,7 +62,7 @@ export async function getUserPosts(userId: string) {
             },
           },
           orderBy: {
-            createdAt: "asc",
+            createdAt: 'asc',
           },
         },
         likes: {
@@ -78,14 +78,14 @@ export async function getUserPosts(userId: string) {
         },
       },
       orderBy: {
-        createdAt: "desc",
+        createdAt: 'desc',
       },
-    });
+    })
 
-    return posts;
+    return posts
   } catch (error) {
-    console.error("Error fetching user posts:", error);
-    throw new Error("Failed to fetch user posts");
+    console.error('Error fetching user posts:', error)
+    throw new Error('Failed to fetch user posts')
   }
 }
 
@@ -120,7 +120,7 @@ export async function getUserLikedPosts(userId: string) {
             },
           },
           orderBy: {
-            createdAt: "asc",
+            createdAt: 'asc',
           },
         },
         likes: {
@@ -136,26 +136,26 @@ export async function getUserLikedPosts(userId: string) {
         },
       },
       orderBy: {
-        createdAt: "desc",
+        createdAt: 'desc',
       },
-    });
+    })
 
-    return likedPosts;
+    return likedPosts
   } catch (error) {
-    console.error("Error fetching liked posts:", error);
-    throw new Error("Failed to fetch liked posts");
+    console.error('Error fetching liked posts:', error)
+    throw new Error('Failed to fetch liked posts')
   }
 }
 
 export async function updateProfile(formData: FormData) {
   try {
-    const { userId: clerkId } = await auth();
-    if (!clerkId) throw new Error("Unauthorized");
+    const { userId: clerkId } = await auth()
+    if (!clerkId) throw new Error('Unauthorized')
 
-    const name = formData.get("name") as string;
-    const bio = formData.get("bio") as string;
-    const location = formData.get("location") as string;
-    const website = formData.get("website") as string;
+    const name = formData.get('name') as string
+    const bio = formData.get('bio') as string
+    const location = formData.get('location') as string
+    const website = formData.get('website') as string
 
     const user = await prisma.user.update({
       where: { clerkId },
@@ -165,20 +165,20 @@ export async function updateProfile(formData: FormData) {
         location,
         website,
       },
-    });
+    })
 
-    revalidatePath("/profile");
-    return { success: true, user };
+    revalidatePath('/profile')
+    return { success: true, user }
   } catch (error) {
-    console.error("Error updating profile:", error);
-    return { success: false, error: "Failed to update profile" };
+    console.error('Error updating profile:', error)
+    return { success: false, error: 'Failed to update profile' }
   }
 }
 
 export async function isFollowing(userId: string) {
   try {
-    const currentUserId = await getDbUserId();
-    if (!currentUserId) return false;
+    const currentUserId = await getDbUserId()
+    if (!currentUserId) return false
 
     const follow = await prisma.follows.findUnique({
       where: {
@@ -187,11 +187,11 @@ export async function isFollowing(userId: string) {
           followingId: userId,
         },
       },
-    });
+    })
 
-    return !!follow;
+    return !!follow
   } catch (error) {
-    console.error("Error checking follow status:", error);
-    return false;
+    console.error('Error checking follow status:', error)
+    return false
   }
 }

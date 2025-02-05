@@ -1,10 +1,10 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ScrollArea } from "@/components/ui/scroll-area";
-import { Skeleton } from "@/components/ui/skeleton";
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { ScrollArea } from '@/components/ui/scroll-area'
+import { Skeleton } from '@/components/ui/skeleton'
 
 export function NotificationsSkeleton() {
   // array of 5 items
-  const skeletonItems = Array.from({ length: 5 }, (_, i) => i);
+  const skeletonItems = Array.from({ length: 5 }, (_, i) => i)
 
   return (
     <div className="space-y-4">
@@ -36,5 +36,5 @@ export function NotificationsSkeleton() {
         </CardContent>
       </Card>
     </div>
-  );
+  )
 }

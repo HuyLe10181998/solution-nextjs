@@ -1,10 +1,10 @@
-import { FC } from "react";
-import { BiCheck, BiSolidTrash } from "react-icons/bi";
+import { FC } from 'react'
+import { BiCheck, BiSolidTrash } from 'react-icons/bi'
 
 interface Props {
-  src: string;
-  onDeleteClick?(): void;
-  onSelectClick?(): void;
+  src: string
+  onDeleteClick?(): void
+  onSelectClick?(): void
 }
 
 const GalleryImage: FC<Props> = ({ src, onDeleteClick, onSelectClick }) => {
@@ -27,7 +27,7 @@ const GalleryImage: FC<Props> = ({ src, onDeleteClick, onSelectClick }) => {
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default GalleryImage;
+export default GalleryImage

@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -93,14 +92,13 @@ body {
 .circle-animation {
   animation: fadeIn 0.5s ease-out;
 }
-.carousel-container ul{
+.carousel-container ul {
   display: flex;
   align-items: center;
   gap: 20px;
 }
-.input-date input{
-  background-color: white!important;
-  color: black!important;
-  width: 100%!important;
-
+.input-date input {
+  background-color: white !important;
+  color: black !important;
+  width: 100% !important;
 }

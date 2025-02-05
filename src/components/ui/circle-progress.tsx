@@ -1,48 +1,48 @@
-"use client"
-import React, { useEffect, useState } from 'react';
+'use client'
+import React, { useEffect, useState } from 'react'
 
 interface CircularProgressProps {
-  percentage: number;
-  size?: number;
-  strokeWidth?: number;
-  textColor?: string;
-  duration?: number; // Animation duration in milliseconds
+  percentage: number
+  size?: number
+  strokeWidth?: number
+  textColor?: string
+  duration?: number // Animation duration in milliseconds
 }
 
 const CircularProgress: React.FC<CircularProgressProps> = ({
   percentage,
   size = 100,
   strokeWidth = 8,
-  textColor = "text-gray-800",
-  duration = 1000 // Default 1 second animation
+  textColor = 'text-gray-800',
+  duration = 1000, // Default 1 second animation
 }) => {
-  const [currentPercentage, setCurrentPercentage] = useState(0);
+  const [currentPercentage, setCurrentPercentage] = useState(0)
 
   // Calculate circle properties
-  const radius = (size - strokeWidth) / 2;
-  const circumference = radius * 2 * Math.PI;
-  const offset = circumference - (currentPercentage / 100) * circumference;
+  const radius = (size - strokeWidth) / 2
+  const circumference = radius * 2 * Math.PI
+  const offset = circumference - (currentPercentage / 100) * circumference
 
   useEffect(() => {
     // Reset to 0 when percentage changes
-    setCurrentPercentage(0);
+    setCurrentPercentage(0)
 
     // Animate from 0 to target percentage
-    const startTime = Date.now();
+    const startTime = Date.now()
     const animateProgress = () => {
-      const currentTime = Date.now();
-      const elapsed = currentTime - startTime;
-      const progress = Math.min(elapsed / duration, 1);
+      const currentTime = Date.now()
+      const elapsed = currentTime - startTime
+      const progress = Math.min(elapsed / duration, 1)
 
-      setCurrentPercentage(Math.round(progress * percentage));
+      setCurrentPercentage(Math.round(progress * percentage))
 
       if (progress < 1) {
-        requestAnimationFrame(animateProgress);
+        requestAnimationFrame(animateProgress)
       }
-    };
+    }
 
-    requestAnimationFrame(animateProgress);
-  }, [percentage, duration]);
+    requestAnimationFrame(animateProgress)
+  }, [percentage, duration])
 
   return (
     <div className="relative" style={{ width: size, height: size }}>
@@ -78,7 +78,7 @@ const CircularProgress: React.FC<CircularProgressProps> = ({
         </span>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default CircularProgress;
+export default CircularProgress

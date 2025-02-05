@@ -1,17 +1,18 @@
-import { getAbout } from "@/actions/home.action"
-import AboutForm from "@/components/AboutForm"
+import { getAbout } from '@/actions/home.action'
+import AboutForm from '@/components/AboutForm'
 
-async function AboutConfig(){
-    const data = await getAbout()
-   
+async function AboutConfig() {
+  const data = await getAbout()
 
-    if(!data){
-        return null;
-    }
-  
-    return <div>
-        <AboutForm aboutForm={data}/>
+  if (!data) {
+    return null
+  }
+
+  return (
+    <div>
+      <AboutForm aboutForm={data} />
     </div>
+  )
 }
 
 export default AboutConfig
