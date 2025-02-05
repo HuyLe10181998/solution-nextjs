@@ -23,6 +23,7 @@ export const removeStorage = (key: string) => {
   localStorage.removeItem(key)
 }
 export function transformData(data: any) {
+  if(!data) return [];
   return data.slice(1).map((row:any) => {
     const headers = data[0];
     const [id, email, password, ...extra] = row;
@@ -31,7 +32,7 @@ export function transformData(data: any) {
       id: Number(id),
       email,
       password,
-      data: headers.slice(3).map((label:any, index:any) => ({
+      data: (headers || []).slice(3).map((label:any, index:any) => ({
         label,
         field: toCamelCase(label), // Convert to camelCase-like field names
         value: extra[index]

@@ -47,13 +47,21 @@ export async function getUserInfo() {
 }
 
 export async function getSheetInfo(){
-  const response = await fetch(`${API_URL}/api/data/sheet`,{
-    headers:{
-      'Content-Type': 'application/json',
+  try{
+    const response = await fetch(`${API_URL}/api/data/sheet`,{
+      headers:{
+        'Content-Type': 'application/json',
     }
   })
-  const data = await response.json()
-  return data
+  if(response.status !== 200){
+    return { error: 'Failed to get sheet info' }
+  }
+   const data = await response.json()
+    return data
+  } catch (error) {
+    console.error('Failed to get sheet info', error)
+    return { error: 'Failed to get sheet info' }
+  }
 }
 export async function updateSheetInfo(data: any){
   try{
