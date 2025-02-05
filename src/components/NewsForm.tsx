@@ -4,14 +4,11 @@ import FormItem from "./ui/form-item"
 import toast from "react-hot-toast"
 import SpinLoading from "./ui/spin-loading"
 import ButtonSave from "./ui/button-save"
-import { Job } from "@/models/job.model"
 import { usePathname, useRouter } from "next/navigation"
-import { createJob, updateJob } from "@/actions/job.action"
 import { News } from "@/models/news.model"
 import FormItemUpload from "./ui/form-item-upload"
 import RichTextEditor from "./ui/rich-text-editor"
 import { createNew, updateNew } from "@/actions/news.action"
-import { formatDate } from "@/lib/utils"
 
 
 
