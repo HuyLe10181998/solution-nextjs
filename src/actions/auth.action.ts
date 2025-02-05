@@ -37,8 +37,11 @@ export async function getUserInfo() {
     if(!sheetInfo){
       return { error: 'No sheet info' }
     }
-    const range = `${sheetInfo.sheetName}!${sheetInfo.range}`
-    const data = await getSheetData(range,sheetInfo.sheetId)
+     if(!sheetInfo?.sheetName || !sheetInfo?.range || !sheetInfo?.sheetId){
+      return { error: 'No sheet info' }
+     }
+    const range = `${sheetInfo?.sheetName}!${sheetInfo?.range}`
+    const data = await getSheetData(range,sheetInfo?.sheetId)
     return data
   }catch(error){
     console.error('Failed to get user info', error)
