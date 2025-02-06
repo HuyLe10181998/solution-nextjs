@@ -47,6 +47,7 @@ function JobForm({ job }: { job?: Job }) {
       }
     } catch (error) {
       console.error('Failed to create job', error)
+      toast.error('Something went wrong')
     } finally {
       setIsLoading(false)
     }
@@ -132,7 +133,7 @@ function JobForm({ job }: { job?: Job }) {
         label="Company"
         name="company"
         type="text"
-        placeholder="Ex: 9.30 am"
+        placeholder="Ex: Solution Company"
         value={job?.company || ''}
         onChange={() => {}}
       />

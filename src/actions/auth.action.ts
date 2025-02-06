@@ -34,6 +34,7 @@ export async function login(username: string, password: string) {
 export async function getUserInfo() {
   try{
     const sheetInfo = await getSheetInfo()
+    console.log('sheetInfo',sheetInfo)
     if(!sheetInfo){
       return { error: 'No sheet info' }
     }

@@ -50,7 +50,7 @@ export async function getJobById(id: number) {
 export async function createJob(jobData: any) {
   try {
     const response = await fetchWithCredentials(
-      `${API_URL}/api/data/job`,
+      `${API_URL}/api/data/jobs`,
       {
         method: 'POST',
         headers: {

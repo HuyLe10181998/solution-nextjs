@@ -3,29 +3,31 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Dispatch, SetStateAction } from 'react'
 
-interface ProfileData {
-  name: string
-  businessName: string
-  registeredDate: string
-  contractExpiry: string
-  licenseNumber: string
-  address: string
-  website: string
-  email: string
-  phone: string
-  businessCategory: string
-  serviceType: string
-  profileImage?: string
-}
+// interface ProfileData {
+//   name: string
+//   businessName: string
+//   registeredDate: string
+//   contractExpiry: string
+//   licenseNumber: string
+//   address: string
+//   website: string
+//   email: string
+//   phone: string
+//   businessCategory: string
+//   serviceType: string
+//   profileImage?: string
+// }
 
-export default function Profile({ data,setIsLogin }: { data: ProfileData,setIsLogin: Dispatch<SetStateAction<boolean>> }) {
+
+export default function Profile({ data,setUser }: { data: any,setUser: Dispatch<SetStateAction<any>> }) {
   return (
     <div className="max-w-7xl mx-auto p-6">
       <div className="flex items-center gap-2 mb-6">
-        <button onClick={()=>setIsLogin(false)} className="text-blue-600 hover:text-gray-900">
+        <button onClick={()=>setUser(null)} className="text-blue-600 hover:text-gray-900">
           ← Back
         </button>
       </div>
+      
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Left Column - General Information */}
@@ -34,26 +36,21 @@ export default function Profile({ data,setIsLogin }: { data: ProfileData,setIsLo
             <h2 className="text-xl font-semibold mb-4">General Information</h2>
             
             <div className="space-y-4">
-              <InfoItem label="Name" value={data.name} />
-              <InfoItem label="Business Name" value={data.businessName} />
-              <InfoItem label="Registered on" value={data.registeredDate} />
-              <InfoItem label="Contract Expiry" value={data.contractExpiry} />
-              <InfoItem label="License Number" value={data.licenseNumber} />
-              <InfoItem label="Current Address" value={data.address} />
-              <InfoItem label="Website" value={data.website} />
-              <InfoItem label="Official Email" value={data.email} />
-              <InfoItem label="Official Phone" value={data.phone} />
+              {data?.data?.map((item:any,index:number)=>(
+                <InfoItem key={index} label={item.label} value={item.value} />
+              ))}
+      
             </div>
           </div>
 
-          <div className="bg-white rounded-lg shadow p-6">
+          {/* <div className="bg-white rounded-lg shadow p-6">
             <h2 className="text-xl font-semibold mb-4">Business Information</h2>
             
             <div className="space-y-4">
               <InfoItem label="Business Category" value={data.businessCategory} />
               <InfoItem label="Service Type" value={data.serviceType} />
             </div>
-          </div>
+          </div> */}
         </div>
 
         {/* Right Column - Profile Photo */}

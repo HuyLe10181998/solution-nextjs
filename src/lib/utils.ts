@@ -26,17 +26,25 @@ export function transformData(data: any) {
   if(!data) return [];
   return data.slice(1).map((row:any) => {
     const headers = data[0];
-    const [id, email, password, ...extra] = row;
-  
+    const indexEmail = headers.findIndex((header:any) => header.toLowerCase().includes('email'));
+    const indexPassword = headers.findIndex((header:any) => header.toLowerCase().includes('password'));
+    const emailValue = row[indexEmail]
+    const passwordValue = row[indexPassword]
     return {
-      id: Number(id),
-      email,
-      password,
-      data: (headers || []).slice(3).map((label:any, index:any) => ({
-        label,
-        field: toCamelCase(label), // Convert to camelCase-like field names
-        value: extra[index]
-      }))
+      id: row[0],
+      email: emailValue,
+      password: passwordValue,
+      data: (headers || [])?.map((label:any, index:any) => {
+        if(label.toLowerCase().includes('email') || label.toLowerCase().includes('password')){
+          return null
+        }
+        const labelValue = label?.split('(')
+        return ({
+          label :labelValue[0],
+          field: labelValue[1], // Convert to camelCase-like field names
+          value: row[index]
+        })
+      })?.filter((item:any) => Boolean(item))
     };
   });
 }

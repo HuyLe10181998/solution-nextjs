@@ -7,20 +7,21 @@ import Profile from './ProfilePage';
 
 function LoginUserForm({data}:any) {
     const [showPassword, setShowPassword] = useState(false);
-    const [isLogin, setIsLogin] = useState(false)
-    const profileData = {
-      name: "Mahmud Saimon",
-      businessName: "TechRabbit Digital",
-      registeredDate: "14 March, 2024",
-      contractExpiry: "14 March, 2025",
-      licenseNumber: "B75KLYT3NM223",
-      address: "House #323, Road #78, Block X/A, New York, NY, United States",
-      website: "www.techrabbit.digital",
-      email: "knock@techrabbit.digital",
-      phone: "+8801303-602331",
-      businessCategory: "Information & Technology",
-      serviceType: "Design & Development"
-    }
+    const [user,setUser] = useState(null)
+    // console.log('data',data)
+    // const profileData = {
+    //   name: "Mahmud Saimon",
+    //   businessName: "TechRabbit Digital",
+    //   registeredDate: "14 March, 2024",
+    //   contractExpiry: "14 March, 2025",
+    //   licenseNumber: "B75KLYT3NM223",
+    //   address: "House #323, Road #78, Block X/A, New York, NY, United States",
+    //   website: "www.techrabbit.digital",
+    //   email: "knock@techrabbit.digital",
+    //   phone: "+8801303-602331",
+    //   businessCategory: "Information & Technology",
+    //   serviceType: "Design & Development"
+    // }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,19 +33,19 @@ function LoginUserForm({data}:any) {
     if(user){
         if(user.password === password){
             toast.success('Login success')
-            setIsLogin(true)
+            setUser(user)
         }else{
             toast.error('Login failed')
-            setIsLogin(false)
+            setUser(null)
         }
     }else{
         toast.error('Email or password is incorrect')
-        setIsLogin(false)
+        setUser(null)
     }
   }
 
-  if(isLogin){
-    return <div className='py-12'><Profile setIsLogin={setIsLogin} data={profileData} /></div>
+  if(user){
+    return <div className='py-12'><Profile setUser={setUser} data={user} /></div>
   }
 
   return (

@@ -10,7 +10,6 @@ export default async function SignIn() {
 
   const userInfo = await getUserInfo();
   const formatData = transformData(userInfo)
-
   return (
     <div className="flex items-center justify-center bg-gradient-to-b from-blue-100 to-blue-50">
 
