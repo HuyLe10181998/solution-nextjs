@@ -28,7 +28,7 @@ async function NewsPage({
         </button>
       </div>
 
-      <div className="flex flex-wrap gap-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 mt-8">
         {data?.blogs?.map((blog: any) => {
           return (
             <div className="!max-w-[500px]" key={blog.id}>

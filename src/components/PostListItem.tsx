@@ -21,12 +21,12 @@ function PostListItem({
   }
   return (
     <div className="single-blog-post mt-12">
-      {!isAdmin && (
+      {/* {!isAdmin && ( */}
         <div
-          className={`post-featured-thumb bg-cover ${post.thumb ? '!min-h-[300px]' : ''}`}
+          className={`post-featured-thumb bg-cover mb-4 ${post.thumb ? '!min-h-[300px]' : ''}`}
           style={{ backgroundImage: `url(${post.thumb})` }}
         />
-      )}
+      {/* )} */}
       <div className="post-content">
         <div className="post-meta flex items-center gap-4">
           <span className="flex items-center gap-2">
