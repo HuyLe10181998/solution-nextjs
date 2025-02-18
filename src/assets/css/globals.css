@@ -102,3 +102,12 @@ body {
   color: black !important;
   width: 100% !important;
 }
+.post-content ul li::before{
+  display: none!important;
+}
+.post-content .post-content ul {
+  list-style: disc!important;
+}
+.post-content ul li {
+  list-style: disc!important;
+}

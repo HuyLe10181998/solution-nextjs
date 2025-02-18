@@ -26,8 +26,8 @@ export default async function NewsDetailPage({
       >
         <div className="container mx-auto">
           <div className="page-heading">
-            <h1
-              className="wow fadeInUp"
+            <h2
+              className="wow fadeInUp text-white max-w-[50%]"
               data-wow-delay=".3s"
               style={{
                 visibility: 'visible',
@@ -35,8 +35,8 @@ export default async function NewsDetailPage({
                 animationName: 'fadeInUp',
               }}
             >
-              News
-            </h1>
+              {post?.data?.title}
+            </h2>
           </div>
         </div>
       </div>
@@ -49,7 +49,7 @@ export default async function NewsDetailPage({
                 <div className="blog-post-details border-wrap mt-0">
                   <div className="single-blog-post post-details mt-0">
                     <div className="post-content !pt-0">
-                      <h2 className="mt-0 title-anim">{post?.data?.title}</h2>
+                      {/* <h2 className="mt-0 title-anim">{post?.data?.title}</h2> */}
                       <div className="post-meta mt-3 flex items-center gap-2">
                         <span className="!flex items-center gap-2">
                           <UserIcon />
