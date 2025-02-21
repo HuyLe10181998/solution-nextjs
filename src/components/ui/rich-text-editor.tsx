@@ -51,8 +51,31 @@ const RichEditor: FC<Props> = ({ onChange, initialContent = '' }) => {
     },
     content: initialContent || 'Type content here...',
     onUpdate: ({ editor }) => {
-      // Call onChange whenever content changes
-      onChange?.(editor.getHTML())
+      const content = editor.getHTML();
+      
+      // Create a temporary DOM element to parse the HTML
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(content, 'text/html');
+      
+      // Find all list items with empty paragraphs
+      const listItems = doc.querySelectorAll('li');
+      let hasChanges = false;
+      
+      listItems.forEach(li => {
+        const p = li.querySelector('p');
+        if (p && p.textContent?.trim() === '') {
+          li.parentNode?.removeChild(li);
+          hasChanges = true;
+        }
+      });
+
+      // If we made changes, update the editor content
+      if (hasChanges) {
+        editor.commands.setContent(doc.body.innerHTML);
+      }
+
+      // Call onChange with the final HTML
+      onChange?.(editor.getHTML());
     },
   })
 
@@ -75,7 +98,7 @@ const RichEditor: FC<Props> = ({ onChange, initialContent = '' }) => {
         <div className="flex-1 px-4">
           <EditorContent
             editor={editor}
-            className="h-full"
+            className="h-full editor-content"
             // extensions={[StarterKit]}
             // content="<h1>Hello world <strong>How are you?</strong></h1>"
           />

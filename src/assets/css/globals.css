@@ -105,9 +105,13 @@ body {
 .post-content ul li::before{
   display: none!important;
 }
-.post-content .post-content ul {
+.blog-content ul {
   list-style: disc!important;
 }
-.post-content ul li {
+.blog-content ul li {
   list-style: disc!important;
+}
+.editor-content ul{
+  list-style: disc!important;
+  padding-left: 30px!important;
 }

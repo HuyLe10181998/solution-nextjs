@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler, FC } from 'react'
+import { ChangeEvent, ChangeEventHandler, FC, useState, useEffect } from 'react'
 import {
   BiAlignLeft,
   BiAlignMiddle,
@@ -65,10 +65,10 @@ const tools = [
     task: 'bulletList',
     icon: <BiListUl size={20} />,
   },
-  {
-    task: 'orderedList',
-    icon: <BiListOl size={20} />,
-  },
+  // {
+  //   task: 'orderedList',
+  //   icon: <BiListOl size={20} />,
+  // },
   {
     task: 'image',
     icon: <BiImageAlt size={20} />,
@@ -94,6 +94,19 @@ const chainMethods = (
 type TaskType = (typeof tools)[number]['task']
 type HeadingType = (typeof headingOptions)[number]['task']
 const Tools: FC<Props> = ({ editor, onImageSelection }) => {
+  const [isSticky, setIsSticky] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // You can adjust this value (200) to change when the toolbar becomes sticky
+      const shouldBeSticky = window.scrollY > 600;
+      setIsSticky(shouldBeSticky);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const handleOnClick = (task: TaskType) => {
     switch (task) {
       case 'bold':
@@ -108,8 +121,8 @@ const Tools: FC<Props> = ({ editor, onImageSelection }) => {
         return chainMethods(editor, (chain) => chain.toggleCode())
       case 'codeBlock':
         return chainMethods(editor, (chain) => chain.toggleCodeBlock())
-      case 'orderedList':
-        return chainMethods(editor, (chain) => chain.toggleOrderedList())
+      // case 'orderedList':
+      //   return chainMethods(editor, (chain) => chain.toggleOrderedList())
       case 'bulletList':
         return chainMethods(editor, (chain) => chain.toggleBulletList())
       case 'left':
@@ -191,7 +204,13 @@ const Tools: FC<Props> = ({ editor, onImageSelection }) => {
   }
 
   return (
-    <div className="flex items-start space-x-1">
+    <div 
+      className={`flex items-start space-x-1 ${
+        isSticky 
+          ? 'fixed top-[146px] left-0 right-0 bg-white z-[9999] px-4 py-2 shadow-md' 
+          : ''
+      }`}
+    >
       <select
         value={getSelectedHeading()}
         className="p-2"
