@@ -40,7 +40,17 @@ export default async function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <head></head>
+      <head>
+        <link
+          href="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.css"
+          rel="stylesheet"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/flowbite@3.0.0/dist/flowbite.min.js"></script>
+        <link rel="apple-touch-icon" sizes="180x180" href="https://api-solution-production.up.railway.app/uploads/favicon_io/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="https://api-solution-production.up.railway.app/uploads/favicon_io/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="https://api-solution-production.up.railway.app/uploads/favicon_io/favicon-16x16.png" />
+        <link rel="manifest" href="https://api-solution-production.up.railway.app/uploads/site.webmanifest" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
