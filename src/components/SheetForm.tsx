@@ -44,11 +44,19 @@ function SheetForm({ sheetData }: { sheetData: SheetData }) {
         Google Sheet Config
       </h2>
       <FormItem
-        label="Sheet Name"
-        name="sheetName"
+        label="Sheet User Name"
+        name="sheetUserName"
         type="text"
         placeholder="Type sheet name"
-        value={sheetData.sheetName}
+        value={sheetData.sheetUserName}
+        onChange={() => {}}
+      />
+            <FormItem
+        label="Sheet Job Name"
+        name="sheetJobName"
+        type="text"
+        placeholder="Type sheet name"
+        value={sheetData.sheetJobName}
         onChange={() => {}}
       />
 

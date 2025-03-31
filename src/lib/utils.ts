@@ -48,6 +48,28 @@ export function transformData(data: any) {
     };
   });
 }
+export function transformJobData(data:any){
+  if(!data) return [];
+  const arr = data?.slice(1)?.map((row:any)=>{
+    const headers = data[0];
+    let obj = {}
+    headers.forEach((item:any,index:number)=>{
+      if(item){
+         const field = (((item?.split('('))?.[1]).split(')'))[0]
+
+         if(field){
+          (obj as any)[field] = row[index]
+
+         }
+
+      }
+    })
+    return obj
+
+   
+  })
+  return arr
+}
 
 function toCamelCase(str: any) {
   return str
@@ -55,4 +77,25 @@ function toCamelCase(str: any) {
       .replace(/\s/g, '') // Remove spaces
       .replace(/^(.)/, (match: any) => match.toLowerCase()); // Lowercase first letter
 }
+export function saveToken(token:string) {
+  const expiresAt = Date.now() + 5 * 60 * 1000; 
+  localStorage.setItem("auth_token", token);
+  localStorage.setItem("auth_expires_at", expiresAt.toString());
+}
 
+export function removeToken() {
+  localStorage.removeItem("auth_token");
+  localStorage.removeItem("auth_expires_at");
+}
+
+export function getToken() {
+  const token = localStorage.getItem("auth_token");
+  const expiresAt = localStorage.getItem("auth_expires_at");
+
+  if (!token || !expiresAt || Date.now() > Number(expiresAt)) {
+      removeToken();
+      return null; 
+  }
+
+  return token; 
+}

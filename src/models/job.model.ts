@@ -11,4 +11,5 @@ export type Job = {
   jobDescription: string
   benefit: string
   note: string
+  status: string
 }

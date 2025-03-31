@@ -85,6 +85,24 @@ export async function updateJob(id: number, jobData: any) {
   }
 }
 
+export async function updateJobs(jobs: any[]) {
+  try {
+    const response = await fetchWithCredentials(
+      `${API_URL}/api/data/jobs`,
+      {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+      JSON.stringify(jobs),
+    )
+  } catch (error) {
+    console.error('Failed to update job:', error)
+    throw new Error('Failed to update job')
+  }
+}
+
 export async function deleteJob(id: number) {
   try {
     const response = await fetchWithCredentials(

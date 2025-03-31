@@ -4,24 +4,11 @@ import { HiEye, HiEyeOff } from 'react-icons/hi';
 import {  useState } from 'react';
 import toast from 'react-hot-toast';
 import Profile from './ProfilePage';
+import { removeToken, saveToken } from '@/lib/utils';
 
 function LoginUserForm({data}:any) {
     const [showPassword, setShowPassword] = useState(false);
     const [user,setUser] = useState(null)
-    // console.log('data',data)
-    // const profileData = {
-    //   name: "Mahmud Saimon",
-    //   businessName: "TechRabbit Digital",
-    //   registeredDate: "14 March, 2024",
-    //   contractExpiry: "14 March, 2025",
-    //   licenseNumber: "B75KLYT3NM223",
-    //   address: "House #323, Road #78, Block X/A, New York, NY, United States",
-    //   website: "www.techrabbit.digital",
-    //   email: "knock@techrabbit.digital",
-    //   phone: "+8801303-602331",
-    //   businessCategory: "Information & Technology",
-    //   serviceType: "Design & Development"
-    // }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -34,13 +21,16 @@ function LoginUserForm({data}:any) {
         if(user.password === password){
             toast.success('Login success')
             setUser(user)
+            saveToken(user.email)
         }else{
             toast.error('Login failed')
+            removeToken()
             setUser(null)
         }
     }else{
         toast.error('Email or password is incorrect')
         setUser(null)
+        removeToken()
     }
   }
 
@@ -103,14 +93,15 @@ function LoginUserForm({data}:any) {
       </button>
     </div>
 
-    {/* Forgot Password */}
-    {/* <div className="text-right">
-      <a href="#" className="text-sm text-gray-600 hover:text-blue-500">
-        Forgot password?
-      </a>
-    </div> */}
 
-    {/* Submit Button */}
+    <div className="text-right text-sm text-gray-600">
+        Not Have Account Yet?
+      <a href="#" className="text-blue-700 hover:text-blue-500 ml-2">
+        Register here.
+      </a>
+    </div>
+
+ 
     <button
       type="submit"
       className="w-full py-3 px-4 bg-gray-900 text-white rounded-lg hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2"

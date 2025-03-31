@@ -4,9 +4,14 @@ import toast from 'react-hot-toast'
 import { deleteJob } from '@/actions/job.action'
 import { DeleteAlertDialog } from './DeleteAlertDialog'
 import Link from 'next/link'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
+
+import { useEffect } from 'react'
+import { getToken } from '@/lib/utils'
 function JobCard({ job }: { job: Job }) {
   const router = useRouter()
+  const pathName = usePathname()
+
   const handleDelete = async () => {
     const response = await deleteJob(job.id)
     if ('error' in response) {
@@ -16,6 +21,11 @@ function JobCard({ job }: { job: Job }) {
       router.refresh()
     }
   }
+  useEffect(()=>{
+    
+    const token = getToken()
+    if(!token && !pathName.includes('admin')) router.back()
+  },[])
   return (
     <>
       <div className="bg-white rounded-lg shadow-md overflow-hidden">
@@ -32,8 +42,9 @@ function JobCard({ job }: { job: Job }) {
             <p className="font-semibold">Salary: {job.salary}</p>
             <p>Estimated LC Filing Date: {job.estimatedFilingDate}</p>
             <p>{job.place}</p>
+            <p>Status: {job.status}</p>
           </div>
-          <div className="flex gap-2">
+          {/* <div className="flex gap-2">
             <Link
               className="theme-btn !bg-blue-500 !rounded-lg !px-8 !py-2 mt-4 line-height"
               href={`/admin/jobs/edit/${job.id}`}
@@ -45,7 +56,7 @@ function JobCard({ job }: { job: Job }) {
               isDeleting={false}
               onDelete={() => handleDelete()}
             />
-          </div>
+          </div> */}
         </div>
       </div>
     </>

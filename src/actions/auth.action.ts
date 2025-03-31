@@ -34,19 +34,37 @@ export async function login(username: string, password: string) {
 export async function getUserInfo() {
   try{
     const sheetInfo = await getSheetInfo()
-    console.log('sheetInfo',sheetInfo)
+    console.log("sheetInfo",sheetInfo)
     if(!sheetInfo){
       return { error: 'No sheet info' }
     }
-     if(!sheetInfo?.sheetName || !sheetInfo?.range || !sheetInfo?.sheetId){
+     if(!sheetInfo?.sheetUserName || !sheetInfo?.range || !sheetInfo?.sheetId){
       return { error: 'No sheet info' }
      }
-    const range = `${sheetInfo?.sheetName}!${sheetInfo?.range}`
+    const range = `${sheetInfo?.sheetUserName}!${sheetInfo?.range}`
     const data = await getSheetData(range,sheetInfo?.sheetId)
     return data
   }catch(error){
     console.error('Failed to get user info', error)
     return { error: 'Failed to get user info' }
+  }
+}
+export async function getJobList(){
+  try{
+    const sheetInfo = await getSheetInfo()
+    if(!sheetInfo){
+      return { error: 'No sheet info' }
+    }
+     if(!sheetInfo?.sheetJobName || !sheetInfo?.range || !sheetInfo?.sheetId){
+      return { error: 'No sheet info' }
+     }
+         const range = `${sheetInfo.sheetJobName}!A1:I`
+         const data = await getSheetData(range,sheetInfo?.sheetId)
+
+         return data
+  }catch(e){
+    console.error('Failed to get user infooo', e)
+    // return { error: 'Failed to get user infoo' }
   }
 }
 

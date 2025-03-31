@@ -69,6 +69,8 @@ export type UserComment = {
 }
 export type SheetData = {
   sheetId: string
-  sheetName: string
+  sheetJobName: string
+  sheetUserName: string
+
   range: string
 }

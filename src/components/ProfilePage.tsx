@@ -22,10 +22,13 @@ import { Dispatch, SetStateAction } from 'react'
 export default function Profile({ data,setUser }: { data: any,setUser: Dispatch<SetStateAction<any>> }) {
   return (
     <div className="max-w-7xl mx-auto p-6">
-      <div className="flex items-center gap-2 mb-6">
+      <div className="flex items-center justify-between gap-2 mb-6">
         <button onClick={()=>setUser(null)} className="text-blue-600 hover:text-gray-900">
-          ← Back
+          {"<- Back"}
         </button>
+        <Link href="/jobs"  className="text-blue-600 hover:text-gray-900">
+          {"Dach sách việc làm  ->"}
+        </Link>
       </div>
       
 

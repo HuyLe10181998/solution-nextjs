@@ -40,11 +40,14 @@ export async function getGoogleSheets() {
 
 export async function getSheetData(range: string,sheetId: string) {
   try {
+    
     const sheets = await getGoogleSheets()
     const response = await sheets.spreadsheets.values.get({
       spreadsheetId: sheetId,
-      range: range, // e.g., 'Sheet1!A1:E10'
+      range, // e.g., 'Sheet1!A1:E10'
     })
+
+
 
     return response.data.values
   } catch (error) {

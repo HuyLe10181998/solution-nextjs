@@ -1,11 +1,7 @@
 
-import { getJobList } from '@/actions/auth.action'
 import { getJobs } from '@/actions/job.action'
 import JobCard from '@/components/JobCard'
 import Pagination from '@/components/Pagination'
-import { Button } from '@/components/ui/button'
-import { UpdateJobBtn } from '@/components/UpdateJobBtn'
-import Link from 'next/link'
 
 export const revalidate = 0
 
@@ -17,6 +13,8 @@ async function Job({
   const page = Number(searchParams?.page) || 1
   const limit = Number(searchParams?.limit) || 10
   const data = await getJobs(page, limit)
+
+
   return (
     <div className="py-8 lg:px-24 px-16 ">
       <div className="flex gap-4 items-center justify-center">
@@ -27,7 +25,6 @@ async function Job({
         >
           <span>Add Job +</span>
         </Link> */}
-    <UpdateJobBtn />
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mt-8">
         {data?.jobs?.map((job: any) => <JobCard key={job.id} job={job} />)}
