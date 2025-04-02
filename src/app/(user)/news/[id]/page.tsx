@@ -21,7 +21,7 @@ export default async function NewsDetailPage({
         className="breadcrumb-wrapper section-padding bg-cover"
         style={{
           backgroundImage:
-            "url('https://api-solution-production.up.railway.app/uploads/1734686032558.png')",
+            "url('https://api-solution-r8zk.onrender.com/uploads/1734686032558.png')",
         }}
       >
         <div className="container mx-auto">

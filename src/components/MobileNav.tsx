@@ -59,7 +59,7 @@ export const MobileNav = (data: HeaderData) => {
         <div className="logo">
           <Link href="/" className="header-logo">
             <Image
-              src="https://api-solution-production.up.railway.app/uploads/1734428457073.png"
+              src="https://api-solution-r8zk.onrender.com/uploads/1734428457073.png"
               alt="logo"
               width={120}
               height={50}

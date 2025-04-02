@@ -54,7 +54,7 @@ const Brand: React.FC = () => {
               >
                 <img
                   width={200}
-                  src={`https://api-solution-production.up.railway.app/uploads/logo/pic-${index + 1}.png`}
+                  src={`https://api-solution-r8zk.onrender.com/uploads/logo/pic-${index + 1}.png`}
                   alt={`brand-img-${index + 1}`}
                   className="m-auto object-contain hover:opacity-80 transition-opacity duration-300"
                 />

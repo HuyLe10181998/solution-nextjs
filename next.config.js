@@ -4,7 +4,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'api-solution-production.up.railway.app',
+        hostname: 'api-solution-r8zk.onrender.com',
         port: '',
         pathname: '/uploads/**',
       },
