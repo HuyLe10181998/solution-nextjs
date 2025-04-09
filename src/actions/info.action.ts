@@ -32,15 +32,22 @@ export async function getInfo(role?: string) {
 }
 
 export async function getHeaderData(role?: string) {
-  const response = await fetchWithCredentials(
-    `${API_URL}/api/data/header?role=${role || 'admin'}`,
-    {
-      headers: {
-        'Content-Type': 'application/json',
+  const url =  `${API_URL}/api/data/header?role=${role || 'admin'}`
+  try{
+    const response = await fetchWithCredentials(
+     url,
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
       },
-    },
-  )
+    )
   return await response.json()
+
+  }catch(e){
+    throw new Error('Failed to fetch info')
+  }
+
 }
 
 export async function updateDataInfo(data: any) {

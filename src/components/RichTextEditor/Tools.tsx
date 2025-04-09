@@ -1,4 +1,4 @@
-import { ChangeEvent, ChangeEventHandler, FC, useState, useEffect } from 'react'
+import { ChangeEvent, ChangeEventHandler, FC, useState, useEffect, useRef } from 'react'
 import {
   BiAlignLeft,
   BiAlignMiddle,
@@ -95,7 +95,7 @@ type TaskType = (typeof tools)[number]['task']
 type HeadingType = (typeof headingOptions)[number]['task']
 const Tools: FC<Props> = ({ editor, onImageSelection }) => {
   const [isSticky, setIsSticky] = useState(false);
-
+  const inputRef = useRef<HTMLInputElement | null>(null);
   useEffect(() => {
     const handleScroll = () => {
       // You can adjust this value (200) to change when the toolbar becomes sticky
@@ -147,8 +147,14 @@ const Tools: FC<Props> = ({ editor, onImageSelection }) => {
           .setImage({ src: result.filePath, alt: 'this is an image' })
           .run()
       }
+
+  
     } catch (error) {
       console.error('Error uploading image:', error)
+    }finally{
+      if (inputRef.current) {
+        inputRef.current.value = '';
+      }
     }
   }
 
@@ -207,7 +213,7 @@ const Tools: FC<Props> = ({ editor, onImageSelection }) => {
     <div 
       className={`flex items-start space-x-1 ${
         isSticky 
-          ? 'fixed top-[146px] left-0 right-0 bg-white z-[9999] px-4 py-2 shadow-md' 
+          ? 'fixed top-[150px] left-0 right-0 bg-white z-[9999999] px-4 py-8 shadow-md' 
           : ''
       }`}
     >
@@ -253,6 +259,7 @@ const Tools: FC<Props> = ({ editor, onImageSelection }) => {
               {task === 'image' ? (
                 <label htmlFor="rich-text-editor-image">
                   <input
+                  ref={inputRef}
                     onChange={handleImageSelection}
                     id="rich-text-editor-image"
                     type="file"

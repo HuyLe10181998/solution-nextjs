@@ -3,6 +3,10 @@ import Link from 'next/link'
 import { CalendarIcon, MessageIcon } from '@/assets/icons'
 import { formatDate } from '@/lib/utils'
 import { DeleteAlertDialog } from './DeleteAlertDialog'
+import { deletePost } from '@/actions/post.action'
+import toast from 'react-hot-toast'
+import { useRouter } from 'next/navigation'
+import { deleteNew } from '@/actions/news.action'
 function PostListItem({
   post,
   isAdmin = false,
@@ -10,14 +14,16 @@ function PostListItem({
   post: any
   isAdmin?: boolean
 }) {
+const router = useRouter()
+
   const handleDelete = async () => {
-    // const response = await deletePost(post.id)
-    // if("error" in response){
-    //     toast.error('Failed to delete post')
-    // }else{
-    //     toast.success('Post deleted successfully')
-    //     router.refresh()
-    // }
+    const response = await deleteNew(post.id)
+    if("error" in response){
+        toast.error('Failed to delete post')
+    }else{
+        toast.success('Post deleted successfully')
+        router.refresh()
+    }
   }
   return (
     <div className="single-blog-post mt-12">

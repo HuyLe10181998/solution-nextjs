@@ -19,17 +19,20 @@ function Navbar() {
 
   useEffect(() => {
     const fetchData = async () => {
+      setIsLoading(true)
       try {
-        setIsLoading(true)
         const headerData = await getHeaderData(isAdmin ? 'admin' : 'user')
         setData(headerData)
+
+
       } catch (err) {
-      } finally {
-        setIsLoading(false)
-      }
+      } 
+
     }
 
     fetchData()
+    setIsLoading(false)
+
   }, [])
 
   if (isLoading) return <Loading />
