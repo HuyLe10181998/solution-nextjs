@@ -6,6 +6,7 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000'
 
 export async function getInfo(role?: string) {
   let response
+  console.log("API_URL",API_URL)
   try {
     if (role === 'user') {
       response = await fetch(`${API_URL}/api/data/info?role=${role}`, {

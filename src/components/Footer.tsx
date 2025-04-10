@@ -2,7 +2,7 @@ import { getInfo } from '@/actions/info.action'
 import React from 'react'
 
 const Footer: React.FC = async () => {
-  const infoData = await getInfo()
+  const infoData = await getInfo("user")
   console.log("infoData",infoData)
   return (
     <footer className="footer-section footer-bg">

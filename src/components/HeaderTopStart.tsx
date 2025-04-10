@@ -5,7 +5,6 @@ import {
   MailIcon,
   MapPinIcon,
 } from '@/assets/icons'
-import { getInfo } from '@/actions/info.action'
 
 const HeaderTopStart = ({data}:{data:any}) => {
 

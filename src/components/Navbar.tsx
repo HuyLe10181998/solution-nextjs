@@ -17,6 +17,7 @@ function Navbar({phoneNumber}:{phoneNumber: string}) {
   const pathname = usePathname()
   const isAdmin = pathname.includes('/admin')
 
+
   useEffect(() => {
     const fetchData = async () => {
       setIsLoading(true)

@@ -3,15 +3,16 @@ import { useState, useEffect } from 'react'
 import Navbar from './Navbar'
 import HeaderTopStart from './HeaderTopStart'
 import { getInfo } from '@/actions/info.action'
-import Loading from './Loading/Loading'
+import { usePathname } from 'next/navigation'
 
 function Header() {
   const [isSticky, setIsSticky] = useState(false)
   const [data, setData] = useState<any>(null)
+  const pathName = usePathname()
   useEffect(() => {
     const fetchData = async () => {
       try{
-        const infoData = await getInfo('user')
+        const infoData = await getInfo(pathName.includes("admin") ? "admin" : "user")
         setData(infoData)
       }catch(e){
 
