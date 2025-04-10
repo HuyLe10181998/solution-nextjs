@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export default async function ContactPage() {
-  const infoData = await getInfo('')
+  const infoData = await getInfo()
   return (
     <div className="mx-auto pb-12">
       {/* Hero Image */}
