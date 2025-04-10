@@ -7,7 +7,7 @@ export const fetchWithCredentials = (
   body?: any,
 ) => {
   const token = cookies().get('access_token')?.value
-
+  
   return fetch(url, {
     ...options,
     credentials: 'include',

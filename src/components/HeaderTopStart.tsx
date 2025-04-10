@@ -7,16 +7,8 @@ import {
 } from '@/assets/icons'
 import { getInfo } from '@/actions/info.action'
 
-const HeaderTopStart: React.FC = () => {
-  const [data, setData] = useState<any>(null)
-  useEffect(() => {
-    const fetchData = async () => {
-      const infoData = await getInfo('user')
-      setData(infoData)
-    }
-    fetchData()
-  }, [])
-  if (!data) return null
+const HeaderTopStart = ({data}:{data:any}) => {
+
   return (
     <div className="header-top-section hidden md:block !px-8 bg-white">
       <div className="container mx-auto">

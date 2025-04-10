@@ -33,10 +33,10 @@ export default function InputSearch() {
       params.set('page', '1')
       params.set('limit', '10')
     } else {
-      params.delete('search')
+        params.delete('search')
     }
     router.push(`?${params.toString()}`)
-  }, [debouncedSearch, router, searchParams])
+  }, [debouncedSearch])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value)

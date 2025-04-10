@@ -63,14 +63,14 @@ function InfoForm({ infoData }: { infoData: InfoData }) {
         onChange={() => {}}
       />
 
-      <FormItem
+      {/* <FormItem
         label="Phone Number Display"
         name="phoneNumberDisplay"
         type="text"
         placeholder="Ex: +236 (456) 896 22"
         value={infoData.phoneNumberDisplay}
         onChange={() => {}}
-      />
+      /> */}
 
       <FormItem
         label="Phone Number"

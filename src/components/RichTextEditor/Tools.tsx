@@ -211,15 +211,15 @@ const Tools: FC<Props> = ({ editor, onImageSelection }) => {
 
   return (
     <div 
-      className={`flex items-start space-x-1 ${
+      className={`space-x-1 ${
         isSticky 
-          ? 'fixed top-[150px] left-0 right-0 bg-white z-[9999999] px-4 py-8 shadow-md' 
-          : ''
+          ? 'fixed top-[150px] max-w-[100px] left-0 right-0 bg-white z-[9999999] px-2 py-8 shadow-md' 
+          : 'flex'
       }`}
     >
       <select
         value={getSelectedHeading()}
-        className="p-2"
+        className={`${isSticky ? "text-[10px] p-1 w-[80px]" : "p-2"}`}
         onChange={handleHeadingSelection}
       >
         {headingOptions.map((item) => {

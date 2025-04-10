@@ -96,7 +96,7 @@ function LoginUserForm({data}:any) {
 
     <div className="text-right text-sm text-gray-600">
         Not Have Account Yet?
-      <a href="#" className="text-blue-700 hover:text-blue-500 ml-2">
+      <a target="_blank" rel="noopener noreferrer"  href="https://docs.google.com/forms/d/e/1FAIpQLSeohjIMI1uDNIuE2B8aeZzKThzpGbtMC8ipyRQqppf_SJRQJw/viewform" className="text-blue-700 hover:text-blue-500 ml-2">
         Register here.
       </a>
     </div>

@@ -11,7 +11,7 @@ import { HeaderData } from '@/models/common.model'
 import { usePathname, useRouter } from 'next/navigation'
 import Loading from './Loading/Loading'
 
-function Navbar() {
+function Navbar({phoneNumber}:{phoneNumber: string}) {
   const [data, setData] = useState<HeaderData | null>(null)
   const [isLoading, setIsLoading] = useState(true)
   const pathname = usePathname()
@@ -26,12 +26,14 @@ function Navbar() {
 
 
       } catch (err) {
-      } 
+      } finally{
+        setIsLoading(false)
+
+      }
 
     }
 
     fetchData()
-    setIsLoading(false)
 
   }, [])
 
@@ -70,7 +72,7 @@ function Navbar() {
                   <div className="content">
                     <p>Phone:</p>
                     <h6>
-                      <Link href="tel:+23645689622">+236 (456) 896 22</Link>
+                      <Link href={`tel:${phoneNumber}`}>{phoneNumber}</Link>
                     </h6>
                   </div>
                 </div>

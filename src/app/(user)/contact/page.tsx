@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export default async function ContactPage() {
-  const infoData = await getInfo('user')
+  const infoData = await getInfo('')
   return (
     <div className="mx-auto pb-12">
       {/* Hero Image */}
@@ -55,10 +55,10 @@ export default async function ContactPage() {
             <div>
               <h4 className="font-medium uppercase mb-2">PHONE:</h4>
               <Link
-                href={`tel:${infoData?.phone}`}
+                href={`tel:${infoData?.phoneNumber}`}
                 className="text-gray-700 hover:text-black"
               >
-                {infoData?.phone}
+                {infoData?.phoneNumber}
               </Link>
             </div>
           </div>

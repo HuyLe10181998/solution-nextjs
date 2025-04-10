@@ -18,7 +18,7 @@ export async function getNews(
       search,
       categoryIds: categoryIds.join(','),
     })
-
+     
     const response = await fetchWithCredentials(
       `${API_URL}/api/data/blogs?${queryParams}`,
       {
@@ -82,6 +82,7 @@ export async function createNew(blogData: any) {
       },
       JSON.stringify(blogData),
     )
+    revalidatePath(`/admin/news`)
     return await response.json()
   } catch (error) {
     console.error('Failed to create blog:', error)
@@ -120,6 +121,7 @@ export async function deleteNew(id: number) {
         },
       },
     )
+    revalidatePath(`/admin/news`)
     return await response.json()
   } catch (error) {
     console.error('Failed to delete blog:', error)
