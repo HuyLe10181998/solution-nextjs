@@ -26,10 +26,11 @@ const HeaderTopStart = ({data}:{data:any}) => {
           </ul>
           <div className="top-right">
             <div className="social-icon flex items-center">
-              <a href={data?.facebookLink || '/'} className="text-primary-gray">
+              <a target="_blank" rel="noopener noreferrer" href={data?.facebookLink || '/'} className="text-primary-gray">
                 <FacebookIcon />
               </a>
               <a
+              target="_blank" rel="noopener noreferrer"
                 href={data?.instagramLink || '/'}
                 className="text-primary-gray"
               >
