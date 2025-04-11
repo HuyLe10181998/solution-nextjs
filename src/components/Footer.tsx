@@ -81,7 +81,7 @@ const Footer: React.FC = async () => {
                   <p>{infoData?.address}</p>
                   <h5>Hours:</h5>
                   <p>
-                    {infoData?.timeEnd} - {infoData?.timeStart} <br />
+                    {infoData?.startTime} - {infoData?.endTime} <br />
                     {infoData?.workingDays}
                   </p>
                 </div>

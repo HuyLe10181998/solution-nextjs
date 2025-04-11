@@ -17,7 +17,7 @@ export default async function ContactPage() {
       </div>
       <div className="px-10">
         {/* Location Text */}
-        <div className="text-gray-500 mb-4">We&apos;re in HCM, Viet Nam</div>
+        <div className="text-gray-500 mb-4">We&apos;re in Bien Hoa, Viet Nam</div>
 
         {/* Main Heading */}
         <h1 className="text-4xl font-serif mb-12">Stop by, Say hello</h1>
@@ -30,7 +30,7 @@ export default async function ContactPage() {
               <h4 className="font-medium uppercase mb-2">OPENING HOURS</h4>
               <p>{infoData?.workingDays}</p>
               <p>
-                {infoData?.timeStart} - {infoData?.timeEnd}
+                {infoData?.startTime} - {infoData?.endTime}
               </p>
             </div>
 
