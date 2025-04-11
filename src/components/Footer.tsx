@@ -3,7 +3,6 @@ import React from 'react'
 
 const Footer: React.FC = async () => {
   const infoData = await getInfo("user")
-  console.log("infoData",infoData)
   return (
     <footer className="footer-section footer-bg">
       <div className="container mx-auto">
