@@ -1559,6 +1559,11 @@ input.main-search-input::placeholder {
   text-transform: capitalize;
   transition: all 0.4s ease-in-out;
 }
+@media (max-width: 1399px) {
+ .header-main .main-menu ul li a {
+    padding: 25px 0;
+  }
+}
 .header-main .main-menu ul li a i {
   font-size: 15px;
   font-weight: 600;
@@ -1918,6 +1923,11 @@ input.main-search-input::placeholder {
 @media (max-width: 1899px) {
   .header-2 .header-main .main-menu ul li .has-homemenu {
     left: -250px;
+  }
+}
+@media (max-width: 1399px) {
+  .header-2 .header-main .main-menu ul li a {
+    padding: 20px 0;
   }
 }
 @media (max-width: 1199px) {

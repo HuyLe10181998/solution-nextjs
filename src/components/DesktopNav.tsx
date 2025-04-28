@@ -63,6 +63,13 @@ export const DesktopNav = (data: HeaderData) => {
               </li>
             )
           })}
+         {
+          !pathname.includes("admin") &&   <li>
+          <a target="_blank" rel="noopener noreferrer"  href="https://docs.google.com/forms/d/e/1FAIpQLSeohjIMI1uDNIuE2B8aeZzKThzpGbtMC8ipyRQqppf_SJRQJw/viewform" className="text-blue-700 hover:text-blue-500 ml-2 text-lg">
+        Nhập hồ sơ thông tin
+      </a>
+          </li>
+         }
         </ul>
       </div>
     </div>

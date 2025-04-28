@@ -123,6 +123,13 @@ export const MobileNav = (data: HeaderData) => {
                 </li>
               )
             })}
+               {
+          !pathname.includes("admin") &&   <li className='p-2'>
+          <a target="_blank" rel="noopener noreferrer"  href="https://docs.google.com/forms/d/e/1FAIpQLSeohjIMI1uDNIuE2B8aeZzKThzpGbtMC8ipyRQqppf_SJRQJw/viewform"  className={`flex items-center p-2 text-gray-900 hover:!text-white rounded-lg  dark:hover:bg-blue-600 group`}>
+        Nhập hồ sơ thông tin
+      </a>
+          </li>
+         }
           </ul>
         </div>
       </div>
