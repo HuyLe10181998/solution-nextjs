@@ -43,11 +43,11 @@ function About({ data }: any) {
                     className="single-circle-bar wow fadeInUp"
                     data-wow-delay=".3s"
                   >
-                    <CircularProgress percentage={68} />
+                    <CircularProgress percentage={99} />
                     <div className="content">
                       <h6>
-                        Business <br />
-                        Strategy
+                        Visa <br />
+                        Approvals
                       </h6>
                     </div>
                   </div>
@@ -55,12 +55,11 @@ function About({ data }: any) {
                     className="single-circle-bar wow fadeInUp"
                     data-wow-delay=".5s"
                   >
-                    <CircularProgress percentage={93} />
+                    <CircularProgress percentage={100} />
 
                     <div className="content">
                       <h6>
-                        Real Technology <br />
-                        Solutions
+                        Reliability 
                       </h6>
                     </div>
                   </div>

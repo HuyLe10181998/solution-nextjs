@@ -1,4 +1,5 @@
 import ChatAction from '@/components/ChatAction'
+import TimeLine from '@/components/Timeline'
 
 function USA() {
   const data = {
@@ -383,6 +384,10 @@ function USA() {
               </li>
             </ul>
           </div>
+        </div>
+
+        <div className='mt-28'>
+          <TimeLine/>
         </div>
 
         <div className="">

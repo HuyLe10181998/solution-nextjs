@@ -12,14 +12,14 @@ function Banner() {
         <div className="container mx-auto">
           <div className="cta-banner-wrapper section-padding  pt-0">
             <div className="video-box">
-              <a
+              {/* <a
                 href="https://www.youtube.com/watch?v=Cn4G2lZ_g2I"
                 className="video-buttton ripple video-popup"
               >
                 <div className="h-full w-full flex justify-center items-center">
                   <PlayIcon />
                 </div>
-              </a>
+              </a> */}
             </div>
           </div>
         </div>

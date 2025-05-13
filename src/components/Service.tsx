@@ -12,7 +12,7 @@ function Service({ data }: any) {
         </div>
       </div>
       <div className="service-wrapper">
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4">
+        <div className="grid xl:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
           {data?.services?.map((item: any, index: number) => {
             return (
               <div key={index} className="wow fadeInUp" data-wow-delay=".2s">

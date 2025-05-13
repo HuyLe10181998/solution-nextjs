@@ -24,10 +24,10 @@ function Process(): JSX.Element {
                 </div>
                 <div className="content">
                   <h4>Chọn Dịch Vụ</h4>
-                  <p>
+                  {/* <p>
                     Trong thời gian rảnh, khi chúng ta có thể tự do lựa chọn
                     dịch vụ phù hợp nhất.
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </div>
@@ -35,10 +35,10 @@ function Process(): JSX.Element {
               <div className="work-process-items text-center">
                 <div className="content style-2">
                   <h4>Chuẩn Bị Hồ Sơ và Thanh Toán</h4>
-                  <p>
+                  {/* <p>
                     Trong thời gian rảnh, khi chúng ta có thể tự do lựa chọn
                     dịch vụ phù hợp nhất.
-                  </p>
+                  </p> */}
                 </div>
                 <div className="icon flex items-center justify-center">
                   <MoneyIcon />
@@ -54,10 +54,10 @@ function Process(): JSX.Element {
                 </div>
                 <div className="content">
                   <h4>Yêu cầu cuộc hẹn</h4>
-                  <p>
+                  {/* <p>
                     Trong thời gian rảnh, khi chúng ta có thể tự do lựa chọn
                     dịch vụ phù hợp nhất.
-                  </p>
+                  </p> */}
                 </div>
               </div>
             </div>
@@ -65,10 +65,10 @@ function Process(): JSX.Element {
               <div className="work-process-items text-center">
                 <div className="content style-2">
                   <h4>Nhận Visa Của Bạn Ngay</h4>
-                  <p>
+                  {/* <p>
                     Trong thời gian rảnh, khi chúng ta có thể tự do lựa chọn
                     dịch vụ phù hợp nhất.
-                  </p>
+                  </p> */}
                 </div>
                 <div className="icon flex items-center justify-center">
                   <VisaIcon />

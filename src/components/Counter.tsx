@@ -46,11 +46,11 @@ function Counter() {
                 </div>
                 <div className="content">
                   <h2>
-                    <span className="count">55</span>M+
+                    <span className="count">99</span>%
                   </h2>
                   <p>
-                    Revenue <br />
-                    Per Year
+                    Visa <br />
+                    Approvals
                   </p>
                 </div>
               </div>
