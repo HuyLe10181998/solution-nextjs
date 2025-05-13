@@ -10,7 +10,10 @@ export async function getHome() {
     const response = await fetch(`${API_URL}/api/data/home`, {
       headers: {
         'Content-Type': 'application/json',
+        
       },
+       cache: "no-cache"
+      
     })
     return await response.json()
   } catch (error) {
@@ -44,6 +47,8 @@ export async function getHero() {
       headers: {
         'Content-Type': 'application/json',
       },
+      cache: "no-cache"
+
     })
     return await response.json()
   } catch (error) {
@@ -76,6 +81,8 @@ export async function getTeam() {
       headers: {
         'Content-Type': 'application/json',
       },
+      cache: "no-cache"
+
     })
     return await response.json()
   } catch (error) {
@@ -109,6 +116,8 @@ export async function getAbout() {
       headers: {
         'Content-Type': 'application/json',
       },
+      cache: "no-cache"
+
     })
     return await response.json()
   } catch (error) {
@@ -140,6 +149,8 @@ export async function getService() {
       headers: {
         'Content-Type': 'application/json',
       },
+      cache: "no-cache"
+
     })
     return await response.json()
   } catch (error) {
@@ -174,6 +185,8 @@ export async function getTestimonial() {
         headers: {
           'Content-Type': 'application/json',
         },
+       cache: "no-cache"
+
       },
     )
     return await response.json()
