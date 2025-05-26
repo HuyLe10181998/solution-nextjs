@@ -28,7 +28,7 @@ const Brand: React.FC = () => {
       <div className="container mx-auto">
         <div className="brand-wrapper">
           <h6 className="text-center wow fadeInUp" data-wow-delay=".3s">
-            1K+ BRANDS TRUST US
+            30+ BRANDS TRUST US
           </h6>
           <Carousel
             swipeable={true}

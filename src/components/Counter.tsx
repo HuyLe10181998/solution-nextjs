@@ -58,8 +58,8 @@ function Counter() {
             <div className="wow fadeInUp" data-wow-delay=".9s">
               <div className="counter-items text-center">
                 <div className="icon center flex items-center justify-center">
-                  <OfficerIcon />
-                </div>
+                  <img alt="man" src="/assets/img/business-man.png" />
+                 </div>
                 <div className="content">
                   <h2>
                     <span className="count">35</span>+
